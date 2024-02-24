@@ -1,0 +1,30 @@
+:root {
+  --text-color-primary: #000;
+}
+
+@layer reset {
+  /* page height */
+  html,
+  body {
+    /* @todo check if we can use the new viewport
+    units here, to automatically fix the mobile vh issue
+    https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser  */
+    height: 100%;
+    font-family: var(--mulish);
+  }
+  /* links */
+  a {
+    text-decoration: none;
+    color: #357df7;
+  }
+
+  /* prettier-ignore */
+  h1, h2, h3, h4, h5, h6,
+  p, span, strong, em, small{
+    display: inline-block;
+    color: var(--text-color-primary);
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+}

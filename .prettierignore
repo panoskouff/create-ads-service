@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules
+.pnp.*
+pnpm-lock.yaml
+
+# Build outputs
+.next
+.out
+.dist
+.build
+
+# Various configuration files (that don't need formatting or are auto-generated)
+*.config.*
+*.d.ts
+jest.config.mjs
+next-env.d.ts
+tsconfig.json
+
+# Miscellaneous
+README.md

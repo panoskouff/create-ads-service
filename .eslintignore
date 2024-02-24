@@ -1,0 +1,15 @@
+# Node modules and build output
+node_modules/
+.next/
+
+# Configuration and build scripts
+*.config.*
+*.d.ts
+jest.config.mjs
+next-env.d.ts
+
+# Other non-source directories or files
+public/
+src/styled-system
+README.md
+todo.md
