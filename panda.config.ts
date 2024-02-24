@@ -41,6 +41,12 @@ export default defineConfig({
         variant: { value: '0px 0px 12px rgba(0, 0, 0, 0.35)' },
         buttonPrimary: { value: '0px 1px 4px rgba(0, 0, 0, 0.16)' },
       },
+      sizes: {
+        'section-max-width': { value: '1200px' },
+      },
+      spacing:{
+        'section-offset': { value: '20px' },
+      }
     },
     semanticTokens: {
       sizes: {

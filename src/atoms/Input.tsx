@@ -11,13 +11,11 @@ export type InputProps = Merge<
   Partial<PandaInputProps>
 >
 
-export const Input: React.FC<InputProps> = ({ children, ...rest }) => (
+export const Input: React.FC<InputProps> = ({ ...rest }) => (
   <styled.input
     p='input-padding-base'
     border='1px solid black'
     rounded='sm'
     {...rest}
-  >
-    {children}
-  </styled.input>
+  />
 )

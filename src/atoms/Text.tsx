@@ -16,7 +16,7 @@ type TextElements = Pick<
     | 'p' | 'span' | 'strong' | 'em' | 'small'
 >;
 
-type Props = {
+export type TextProps = {
   as?: keyof TextElements
   css?: PandaCssProps
 } & PandaHTMLElementStyleProps<
@@ -33,7 +33,7 @@ type Props = {
 >
 
 // @todo solve import issue or rename component
-export const Text: React.FC<Props> = ({
+export const Text: React.FC<TextProps> = ({
   as: Element = 'span',
   className,
   textStyle = 'body',

@@ -11,9 +11,6 @@ const styles: TextStyles = {
   },
 }
 
-// where is the default color for text configured ?
-// should I try to map color to these or is this a bad practice ?
-
 export const textStyles = defineTextStyles({
   inherit: {
     description:
@@ -34,6 +31,35 @@ export const textStyles = defineTextStyles({
       ...styles.base.value,
       fontSize: '18px',
       lineHeight: '32px',
+    },
+  },
+  title: {
+    description: 'The title text style',
+    value: {
+      ...styles.base.value,
+      fontFamily: 'tinos',
+      lineHeight: '120%',
+      fontSize: { base: '36px', sm: '54px', lg: '60px' },
+    },
+  },
+  'title-secondary': {
+    description: 'The secondary title text style',
+    value: {
+      ...styles.base.value,
+      fontFamily: 'tinos',
+      lineHeight: '120%',
+      fontSize: { base: '36px', sm: '50px', md: '5.5vh' },
+    },
+  },
+  caption: {
+    description: 'The caption text style',
+    value: {
+      ...styles.base.value,
+      fontSize: '14px',
+      lineHeight: '110%',
+      fontWeight: 600,
+      letterSpacing: '0.2em',
+      textTransform: 'uppercase',
     },
   },
   button: {

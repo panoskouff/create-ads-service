@@ -1,4 +1,5 @@
 import { HTMLStyledProps, styled } from '#/styled-system/jsx'
+import { Text, TextProps } from './Text'
 
 export type PandaLabelProps = Pick<
   HTMLStyledProps<'label'>,
@@ -29,6 +30,10 @@ export const Label: React.FC<LabelProps & { required?: boolean }> = ({
   <styled.label textStyle='body' color='text-color-primary' {...rest}>
     {children}
     {/* @todo add color to panda config */}
-    {required && <styled.span color='#ff0303'>&nbsp;*</styled.span>}
+    {required && (
+      <Text as='span' textStyle='body' color='#ff0303'>
+        &nbsp;*
+      </Text>
+    )}
   </styled.label>
 )
