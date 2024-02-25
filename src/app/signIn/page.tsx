@@ -3,16 +3,17 @@ import { Button, Column, Input, Label, Space, Text } from '#/atoms'
 import { FormInput } from '#/components/FormInput'
 import { SectionContainer } from '#/components/SectionContainer'
 import { useState } from 'react'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
-export default function SignUpPage() {
+export default function SignIn() {
+  const router = useRouter()
   const [formData, setFormData] = useState<{
     email: string
-    userName: string
     password: string
-  }>({ email: '', userName: '', password: '' })
+  }>({ email: '', password: '' })
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [accountCreated, setAccountCreated] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -22,22 +23,18 @@ export default function SignUpPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setAccountCreated(false)
     setErrorMessage('')
     try {
-      const response = await fetch('/api/signUp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const response = await signIn('credentials', {
+        ...formData,
+        redirect: false,
       })
-      const data = await response.json()
 
-      if (response.ok) {
-        setAccountCreated(true)
+      if (response?.ok) {
+        // @todo add toast of logged in message
+        router.refresh()
       } else {
-        setErrorMessage(data.error || 'An error occurred')
+        setErrorMessage(response?.error || 'An error occurred')
       }
     } catch (error) {
       setErrorMessage('Failed to submit form. Please try again.')
@@ -63,17 +60,6 @@ export default function SignUpPage() {
             />
           </Column>
           <Column>
-            <Label htmlFor='userName'>username</Label>
-            <FormInput
-              id='userName'
-              name='userName'
-              disabled={isLoading}
-              required
-              value={formData.userName}
-              onChange={handleChange}
-            />
-          </Column>
-          <Column>
             <Label htmlFor='password'>password</Label>
             <FormInput
               id='password'
@@ -86,10 +72,9 @@ export default function SignUpPage() {
             />
           </Column>
           <div /> {/* spacer */}
-          <Button type='submit' disabled={isLoading} text='Sign up' />
+          <Button type='submit' disabled={isLoading} text='Sign in' />
           <div /> {/* spacer */}
           {isLoading && <Text>Submitting form...</Text>}
-          {accountCreated && <Text color='green'>Account created !</Text>}
           {errorMessage && <Text color='red'>{errorMessage}</Text>}
         </Column>
       </form>

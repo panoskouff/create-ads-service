@@ -10,6 +10,12 @@ export const FormInput: React.FC<InputProps> = ({
     css={{
       lineHeight: '24px',
       fontSize: 18,
+      _disabled: {
+        backgroundColor: '#ccc',
+        borderColor: '#ccc',
+        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px 0px',
+        opacity: 0.5,
+      },
     }}
     {...rest}
   />
