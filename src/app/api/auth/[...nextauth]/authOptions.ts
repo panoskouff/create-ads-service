@@ -44,7 +44,22 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: '/',
   },
-  debug: process.env.NODE_ENV === 'development',
   session: { strategy: 'jwt' },
+  callbacks: {
+    async signIn({ user, account }) {
+      /* user is resolved by authorize function, so we have 
+      already checked the credentials there */
+      return user ? true : false
+    },
+    async jwt({ token, user }) {
+      /* this callback is called whenever a JWT is created 
+      (sign in) or updated (session is accessed) */
+      if (user) {
+        token.id = user.id
+      }
+      return token
+    },
+  },
+  debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXT_AUTH_SECRET,
 }
