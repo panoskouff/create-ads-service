@@ -4,10 +4,8 @@ import { FormInput } from '#/components/FormInput'
 import { SectionContainer } from '#/components/SectionContainer'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 
 export default function SignIn() {
-  const router = useRouter()
   const [formData, setFormData] = useState<{
     email: string
     password: string
@@ -31,8 +29,9 @@ export default function SignIn() {
       })
 
       if (response?.ok) {
-        // @todo add toast of logged in message
-        router.refresh()
+        /* We make a full page redirect because next has the
+        unauthenticated homepage version cached  */
+        window.location.href = '/'
       } else {
         setErrorMessage(response?.error || 'An error occurred')
       }
