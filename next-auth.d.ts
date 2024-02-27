@@ -10,7 +10,9 @@ declare module 'next-auth' {
    */
   interface Session {
     user: {
-      id?: string;
+      userName: string;
+      image?: string | null;
+      id: string;
     } & DefaultSession['user'];
   }
 }
