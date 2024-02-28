@@ -43,7 +43,7 @@ export default function SignIn() {
 
   return (
     <SectionContainer maxW={400}>
-      <Text textStyle='title'>Sign up!</Text>
+      <Text textStyle='title'>Sign in!</Text>
       <Space h={20} />
       <form onSubmit={handleSubmit}>
         <Column gap={20}>

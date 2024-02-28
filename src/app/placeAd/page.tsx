@@ -3,11 +3,10 @@
 import { getServerSession } from 'next-auth'
 import SessionProvider from '#/components/SessionProvider'
 import { authOptions } from '#/app/api/auth/[...nextauth]/authOptions'
-import Link from 'next/link'
 import { Center, Space, Text, TextLink } from '#/atoms'
 import { SectionContainer } from '#/components/SectionContainer'
 
-export default async function Home() {
+export default async function PlaceAd() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -15,25 +14,21 @@ export default async function Home() {
       <SectionContainer>
         <Center h='80vh'>
           <Text>
-            Please <Link href='/signIn'>sign in</Link> to proceed
+            You need to <TextLink href='/signIn'>sign in</TextLink> before you
+            can place and ad
           </Text>
         </Center>
       </SectionContainer>
     )
   }
 
-  const noAdsYetMessage = "You haven't placed an ad yet..."
-
   // @todo remove session provider if it ends up not being used
   return (
     <SessionProvider session={session}>
       <SectionContainer>
-        <Text textStyle='title' css={{ display: 'block' }}>
-          Your ads
-        </Text>
-        <Text>{noAdsYetMessage}</Text>
         <Space h={20} />
-        <TextLink href='/placeAd'>Place an ad</TextLink>
+        <Text textStyle='title'>New property classified</Text>
+        <Space h={20} />
       </SectionContainer>
     </SessionProvider>
   )
