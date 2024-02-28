@@ -11,7 +11,6 @@ export type InputProps = Merge<
   Partial<PandaInputProps>
 >
 
-// Adjust the component to use React.forwardRef
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => (
     <styled.input
@@ -21,6 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       borderRadius='3px'
       display='block'
       fontSize='1rem'
+      lineHeight='1.5rem'
       letterSpacing='inherit'
       padding='.55rem .75rem'
       transition='border-color .2s ease-in-out, box-shadow .2s ease-in-out'
@@ -31,4 +31,4 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ),
 )
 
-Input.displayName = 'Input' // It's a good practice to set a displayName when using forwardRef
+Input.displayName = 'Input'
