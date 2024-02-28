@@ -1,6 +1,6 @@
+import React from 'react'
 import { HTMLStyledProps, styled } from '#/styled-system/jsx'
 
-// @todo find out what props make sense to allow here
 export type PandaInputProps = Pick<
   HTMLStyledProps<'input'>,
   'p' | 'flexGrow' | 'css'
@@ -11,11 +11,24 @@ export type InputProps = Merge<
   Partial<PandaInputProps>
 >
 
-export const Input: React.FC<InputProps> = ({ ...rest }) => (
-  <styled.input
-    p='input-padding-base'
-    border='1px solid black'
-    rounded='sm'
-    {...rest}
-  />
+// Adjust the component to use React.forwardRef
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => (
+    <styled.input
+      ref={ref}
+      background='#fff'
+      border='1px solid #a7acb1'
+      borderRadius='3px'
+      display='block'
+      fontSize='1rem'
+      letterSpacing='inherit'
+      padding='.55rem .75rem'
+      transition='border-color .2s ease-in-out, box-shadow .2s ease-in-out'
+      width='100%'
+      willChange='box-shadow'
+      {...props}
+    />
+  ),
 )
+
+Input.displayName = 'Input' // It's a good practice to set a displayName when using forwardRef

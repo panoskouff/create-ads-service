@@ -14,7 +14,12 @@ export default defineConfig({
   exclude: [],
   conditions: {
     extend: {
-      stateIdle: '.idle &',
+      focusNotTouched: '&:focus:not(.touched)',
+      focusTouched: '&.touched:focus',
+      touchedInvalid: '&.touched.invalid',
+      focusTouchedInvalid: '&.touched.invalid:focus',
+      touchedValid: '&.touched.valid',
+      focusTouchedValid: '&.touched.valid:focus',
     },
   },
   theme: {

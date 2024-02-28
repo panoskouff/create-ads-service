@@ -5,6 +5,7 @@ import SessionProvider from '#/components/SessionProvider'
 import { authOptions } from '#/app/api/auth/[...nextauth]/authOptions'
 import { Center, Space, Text, TextLink } from '#/atoms'
 import { SectionContainer } from '#/components/SectionContainer'
+import AdPropertyForm from '#/components/AdPropertyForm'
 
 export default async function PlaceAd() {
   const session = await getServerSession(authOptions)
@@ -29,6 +30,7 @@ export default async function PlaceAd() {
         <Space h={20} />
         <Text textStyle='title'>New property classified</Text>
         <Space h={20} />
+        <AdPropertyForm />
       </SectionContainer>
     </SessionProvider>
   )
