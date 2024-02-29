@@ -9,21 +9,23 @@ import {
 import { Input, Label, Text } from '#/atoms'
 import { cn } from '#/utils/cn'
 import React from 'react'
+import { InputProps } from '#/atoms/Input'
 
-type InputProps<T extends FieldValues> = {
+type FormControlInputProps<T extends FieldValues> = {
   fieldTitle: string
   placeholder?: string
-} & Pick<UseControllerProps<T>, 'name' | 'rules'>
+} & Pick<UseControllerProps<T>, 'name' | 'rules'> &
+  InputProps
 
 export function FormControlInputText<T extends FieldValues>({
   fieldTitle,
   placeholder,
   name,
   rules,
-}: InputProps<T>) {
+  ...rest
+}: FormControlInputProps<T>) {
   const { control } = useFormContext<T>()
   const { field, fieldState } = useController({ name, control, rules })
-
   return (
     <div>
       {fieldTitle && (
@@ -39,6 +41,7 @@ export function FormControlInputText<T extends FieldValues>({
       <Input
         {...field}
         placeholder={placeholder}
+        required={Boolean(rules?.required)}
         id={name}
         className={cn(
           fieldState.isTouched && 'touched',
@@ -68,6 +71,7 @@ export function FormControlInputText<T extends FieldValues>({
             outline: 'none',
           },
         }}
+        {...rest}
       />
       {fieldState.isTouched && fieldState.error?.message && (
         <Text

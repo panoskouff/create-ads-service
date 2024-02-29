@@ -7,7 +7,7 @@ import { FormControlSelect } from './FormControlSelect'
 
 type Inputs = {
   propertyTitle: string
-  price: number
+  price: string
   propertyType: string
 }
 
@@ -15,7 +15,7 @@ export default function AdPropertyForm() {
   const methods = useForm<Inputs>({
     defaultValues: {
       propertyTitle: '',
-      price: 0,
+      price: '',
       propertyType: '',
     },
     mode: 'all',
@@ -47,7 +47,11 @@ export default function AdPropertyForm() {
             fieldTitle='Type'
             name='propertyType'
             options={[
-              { label: 'Type', value: '', disabled: true },
+              {
+                label: '',
+                value: '',
+                disabled: true,
+              },
               { label: 'Rent', value: 'rent' },
               { label: 'Buy', value: 'buy' },
               { label: 'Exchange', value: 'exchange' },
@@ -56,14 +60,26 @@ export default function AdPropertyForm() {
             rules={{
               required: {
                 value: true,
-                message: 'Please select a type for your property',
+                message: 'Please select an ad type for your property',
               },
             }}
           />
           <FormControlInputText
-            fieldTitle='price'
+            fieldTitle='Price in Euros'
             name='price'
-            rules={{ required: true }}
+            type='string'
+            onChange={(e) => {
+              const newValue = e.target.value
+              if (newValue.match(/^[0-9]*$/) || newValue === '') {
+                methods.setValue('price', newValue)
+              }
+            }}
+            rules={{
+              required: {
+                value: true,
+                message: 'Please add a price for your property ad',
+              },
+            }}
           />
         </FormFieldSet>
         <input type='submit' />
