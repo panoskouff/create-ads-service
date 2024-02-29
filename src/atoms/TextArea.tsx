@@ -1,6 +1,6 @@
+import React from 'react'
 import { HTMLStyledProps, styled } from '#/styled-system/jsx'
 
-// @todo find out what props make sense to allow here
 export type PandaTextAreaProps = Pick<
   HTMLStyledProps<'textarea'>,
   'p' | 'flexGrow' | 'css'
@@ -11,13 +11,24 @@ export type TextAreaProps = Merge<
   Partial<PandaTextAreaProps>
 >
 
-export const TextArea: React.FC<TextAreaProps> = ({ children, ...rest }) => (
-  <styled.textarea
-    p='input-padding-base'
-    border='1px solid black'
-    rounded='sm'
-    {...rest}
-  >
-    {children}
-  </styled.textarea>
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props, ref) => (
+    <styled.textarea
+      ref={ref}
+      background='#fff'
+      border='1px solid #a7acb1'
+      borderRadius='3px'
+      display='block'
+      fontSize='1rem'
+      lineHeight='1.5rem'
+      letterSpacing='inherit'
+      padding='.55rem .75rem'
+      transition='border-color .2s ease-in-out, box-shadow .2s ease-in-out'
+      width='100%'
+      willChange='box-shadow'
+      {...props}
+    />
+  ),
 )
+
+TextArea.displayName = 'TextArea'

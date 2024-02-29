@@ -4,6 +4,7 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { FormFieldSet } from './FormFieldSet'
 import { FormControlInputText } from './FormControlInputText'
 import { FormControlSelect } from './FormControlSelect'
+import { FormControlTextArea } from './FormControlTextArea'
 
 type Inputs = {
   propertyTitle: string
@@ -48,7 +49,7 @@ export default function AdPropertyForm() {
             name='propertyType'
             options={[
               {
-                label: '',
+                label: 'Type',
                 value: '',
                 disabled: true,
               },
@@ -79,6 +80,13 @@ export default function AdPropertyForm() {
                 value: true,
                 message: 'Please add a price for your property ad',
               },
+            }}
+          />
+          <FormControlTextArea
+            fieldTitle='Extra description'
+            name='propertyDescription'
+            rules={{
+              required: false,
             }}
           />
         </FormFieldSet>
