@@ -25,7 +25,7 @@ export default function AdPropertyForm() {
     /* "handleSubmit" will validate inputs before invoking "onSubmit" */
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <FormFieldSet>
+        <FormFieldSet title='Property details'>
           <FormControlInputText
             fieldTitle='Title'
             name='propertyTitle'
@@ -36,7 +36,6 @@ export default function AdPropertyForm() {
               },
             }}
           />
-          <Space h={16} />
           <FormControlInputText
             fieldTitle='price'
             name='price'

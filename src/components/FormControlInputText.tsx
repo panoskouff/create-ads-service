@@ -6,7 +6,7 @@ import {
   FieldValues,
 } from 'react-hook-form'
 
-import { Input as InputAtom, Label, Text } from '#/atoms'
+import { Input, Label, Text } from '#/atoms'
 import { cn } from '#/utils/cn'
 import React from 'react'
 
@@ -35,7 +35,7 @@ export function FormControlInputText<T extends FieldValues>({
           {fieldTitle}
         </Label>
       )}
-      <InputAtom
+      <Input
         {...field}
         placeholder={name}
         className={cn(
