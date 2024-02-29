@@ -31,6 +31,32 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       >
         {children}
       </styled.select>
+      <styled.svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24px'
+        height='24px'
+        fill='none'
+        aria-hidden='true'
+        viewBox='0 0 24 24'
+        data-t='select-field-icon'
+        role='img'
+        pointerEvents='none'
+        position='absolute'
+        right='0.75rem'
+        top='50%'
+        transform='translateY(-50%)'
+        zIndex='1'
+        color='currentColor'
+        display='inline-block'
+        verticalAlign='middle'
+      >
+        <path
+          fill='currentColor'
+          fillRule='evenodd'
+          d='M3.72 8.22a.75.75 0 0 1 1.06 0l6.97 6.97 6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.146 7.147a1.25 1.25 0 0 1-1.768 0L3.72 9.28a.75.75 0 0 1 0-1.06Z'
+          clipRule='evenodd'
+        ></path>
+      </styled.svg>
     </styled.div>
   ),
 )

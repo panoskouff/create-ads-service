@@ -7,7 +7,7 @@ import {
   UseControllerProps,
 } from 'react-hook-form'
 
-import { Label, Select, Text } from '#/atoms' // Assuming Select is your custom select component
+import { Label, Select, Text } from '#/atoms'
 import { cn } from '#/utils/cn'
 import { styled } from '#/styled-system/jsx'
 
