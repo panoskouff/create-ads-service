@@ -14,6 +14,7 @@ export default defineConfig({
   exclude: [],
   conditions: {
     extend: {
+      invalid: '&.invalid',
       focusNotTouched: '&:focus:not(.touched)',
       focusTouched: '&.touched:focus',
       touchedInvalid: '&.touched.invalid',
