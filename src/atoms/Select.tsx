@@ -47,12 +47,12 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         top='50%'
         transform='translateY(-50%)'
         zIndex='1'
-        color='currentColor'
+        color='#a0a2a5'
         display='inline-block'
         verticalAlign='middle'
       >
         <path
-          fill='currentColor'
+          fill='#a0a2a5'
           fillRule='evenodd'
           d='M3.72 8.22a.75.75 0 0 1 1.06 0l6.97 6.97 6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.146 7.147a1.25 1.25 0 0 1-1.768 0L3.72 9.28a.75.75 0 0 1 0-1.06Z'
           clipRule='evenodd'
