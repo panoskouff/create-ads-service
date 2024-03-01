@@ -1,0 +1,1 @@
+export { fetchAreaSuggestions } from './areaSuggestions'

@@ -8,25 +8,24 @@ import {
 } from 'react-hook-form'
 import { FormFieldSet } from './FormFieldSet'
 import { FormControlInputText } from './FormControlInputText'
-import AsyncSelect, { AsyncProps } from 'react-select/async'
+import AsyncSelect from 'react-select/async'
 import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
+import { fetchAreaSuggestions } from '#/queries'
 
 type Option = { label: string; value: string }
 
-const mockOptions: Option[] = [
-  { label: 'Rent', value: 'rent' },
-  { label: 'Buy', value: 'buy' },
-  { label: 'Exchange', value: 'exchange' },
-  { label: 'Donation', value: 'donation' },
-]
+const loadOptions = async (inputValue: string): Promise<Option[]> => {
+  const { hasError, data } = await fetchAreaSuggestions(inputValue)
 
-const loadData = (): Promise<Option[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockOptions)
-    }, 1000)
-  })
+  if (!data) {
+    if (hasError) {
+      // @todo display error
+    }
+    return []
+  }
+
+  return data
 }
 
 type Inputs = {
@@ -97,7 +96,7 @@ export default function AdPropertyForm() {
             render={({ field }) => (
               <AsyncSelect
                 isMulti
-                loadOptions={(x: string) => loadData()}
+                loadOptions={loadOptions}
                 filterOption={(option, inputValue) => {
                   return option.label
                     .toLowerCase()
