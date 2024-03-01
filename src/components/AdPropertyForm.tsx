@@ -12,10 +12,15 @@ import AsyncSelect from 'react-select/async'
 import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
 import { fetchAreaSuggestions } from '#/queries'
+import { debounce } from '#/utils'
 
 type Option = { label: string; value: string }
 
-const loadOptions = async (inputValue: string): Promise<Option[]> => {
+const fetchOptions = async (inputValue: string): Promise<Option[]> => {
+  if (inputValue.length < 3) {
+    return []
+  }
+
   const { hasError, data } = await fetchAreaSuggestions(inputValue)
 
   if (!data) {
@@ -27,6 +32,13 @@ const loadOptions = async (inputValue: string): Promise<Option[]> => {
 
   return data
 }
+
+const loadOptionsDebounced = debounce(
+  (inputValue: string, callback: (options: Option[]) => void) => {
+    fetchOptions(inputValue).then((options) => callback(options))
+  },
+  500,
+)
 
 type Inputs = {
   propertyTitle: string
@@ -96,7 +108,7 @@ export default function AdPropertyForm() {
             render={({ field }) => (
               <AsyncSelect
                 isMulti
-                loadOptions={loadOptions}
+                loadOptions={loadOptionsDebounced}
                 filterOption={(option, inputValue) => {
                   return option.label
                     .toLowerCase()
