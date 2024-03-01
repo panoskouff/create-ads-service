@@ -6,6 +6,7 @@ import { FormControlInputText } from './FormControlInputText'
 import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
 import { FormControlAreaAutocomplete } from './FormControlAreaAutocomplete/FormControlAreaAutocomplete'
+import { Button, Space } from '#/atoms'
 
 type Option = { label: string; value: string }
 
@@ -107,7 +108,8 @@ export default function AdPropertyForm() {
             }}
           />
         </FormFieldSet>
-        <input type='submit' />
+        <Space h={20} />
+        <Button type='submit' text='Submit Ad' />
       </form>
     </FormProvider>
   )

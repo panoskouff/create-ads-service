@@ -13,14 +13,18 @@ export const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => (
   <styled.button
-    bg='#fff'
     cursor='pointer'
     display='inline-block'
     border='1px solid #ccc'
-    borderRadius='sm'
     boxShadow='buttonPrimary'
-    transition='all 0.1s'
-    _hover={{ bg: '#eee' }}
+    width='100%'
+    borderRadius='100px'
+    padding='3px'
+    backgroundColor='#005bed'
+    transitionDuration='.2s'
+    transitionProperty='background-color, color, border-color, box-shadow'
+    transitionTimingFunction='ease-in-out'
+    _hover={{ backgroundColor: '#1862b5' }}
     _disabled={{
       bg: '#ccc',
       opacity: 0.5,
@@ -31,7 +35,12 @@ export const Button: React.FC<ButtonProps> = ({
   >
     {text && (
       <Padding p={p}>
-        <Text textStyle='button' letterSpacing={0.3}>
+        <Text
+          textStyle='button'
+          letterSpacing={0.3}
+          color='white'
+          fontWeight={800}
+        >
           {text}
         </Text>
       </Padding>

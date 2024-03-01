@@ -52,6 +52,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
                 }
               },
             }}
+            id={name}
             isMulti
             loadOptions={loadOptionsDebounced}
             filterOption={(option, inputValue) => {
