@@ -1,44 +1,13 @@
 'use client'
 import React from 'react'
-import {
-  useForm,
-  SubmitHandler,
-  FormProvider,
-  Controller,
-} from 'react-hook-form'
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { FormFieldSet } from './FormFieldSet'
 import { FormControlInputText } from './FormControlInputText'
-import AsyncSelect from 'react-select/async'
 import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
-import { fetchAreaSuggestions } from '#/queries'
-import { debounce } from '#/utils'
+import { FormControlAreaAutocomplete } from './FormControlAreaAutocomplete/FormControlAreaAutocomplete'
 
 type Option = { label: string; value: string }
-
-const fetchOptions = async (inputValue: string): Promise<Option[]> => {
-  if (inputValue.length < 3) {
-    return []
-  }
-
-  const { hasError, data } = await fetchAreaSuggestions(inputValue)
-
-  if (!data) {
-    if (hasError) {
-      // @todo display error
-    }
-    return []
-  }
-
-  return data
-}
-
-const loadOptionsDebounced = debounce(
-  (inputValue: string, callback: (options: Option[]) => void) => {
-    fetchOptions(inputValue).then((options) => callback(options))
-  },
-  500,
-)
 
 type Inputs = {
   propertyTitle: string
@@ -102,21 +71,16 @@ export default function AdPropertyForm() {
               },
             }}
           />
-          <Controller
+          <FormControlAreaAutocomplete
+            fieldTitle='Area'
             name='areaSelect'
-            control={methods.control}
-            render={({ field }) => (
-              <AsyncSelect
-                isMulti
-                loadOptions={loadOptionsDebounced}
-                filterOption={(option, inputValue) => {
-                  return option.label
-                    .toLowerCase()
-                    .includes(inputValue.toLowerCase())
-                }}
-                {...field}
-              />
-            )}
+            rules={{
+              required: {
+                value: true,
+                message:
+                  'Please select the matching area or areas of your property',
+              },
+            }}
           />
           <FormControlInputText
             fieldTitle='Price in Euros'

@@ -27,6 +27,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         letterSpacing='inherit'
         padding='0.55rem calc(0.75rem + 32px) 0.55rem 0.75rem'
         width='100%'
+        _placeholder={{ color: '#a0a2a5' }}
         {...rest}
       >
         {children}

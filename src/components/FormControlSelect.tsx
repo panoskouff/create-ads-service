@@ -46,7 +46,7 @@ export function FormControlSelect<T extends FieldValues>({
           fieldState.invalid ? 'invalid' : 'valid',
         )}
         css={{
-          _invalid: { color: '#6e757d' },
+          _invalid: { color: '#a0a2a5' },
           _focusNotTouched: {
             borderColor: '#1862b5',
             boxShadow: '0 0 0 4px hsla(0, 0%, 100%, .7), 0 0 0 4px #005bed',
@@ -73,7 +73,8 @@ export function FormControlSelect<T extends FieldValues>({
             key={option.value}
             value={option.value}
             disabled={option.disabled}
-            color={{ base: '#2b2e31', _disabled: '#6e757d' }}
+            // a0a2a5
+            color='#2b2e31'
             fontSize='1rem'
           >
             {option.label}
