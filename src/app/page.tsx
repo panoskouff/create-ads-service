@@ -15,7 +15,7 @@ export default async function Home() {
       <SectionContainer>
         <Center h='80vh'>
           <Text>
-            Please <Link href='/signIn'>sign in</Link> to proceed
+            Please <Link href='/sign-in'>sign in</Link> to proceed
           </Text>
         </Center>
       </SectionContainer>
@@ -33,7 +33,7 @@ export default async function Home() {
         </Text>
         <Text>{noAdsYetMessage}</Text>
         <Space h={20} />
-        <TextLink href='/placeAd'>Place an ad</TextLink>
+        <TextLink href='/place-ad'>Place an ad</TextLink>
       </SectionContainer>
     </SessionProvider>
   )

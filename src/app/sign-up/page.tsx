@@ -25,7 +25,7 @@ export default function SignUpPage() {
     setAccountCreated(false)
     setErrorMessage('')
     try {
-      const response = await fetch('/api/signUp', {
+      const response = await fetch('/api/sign-up', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

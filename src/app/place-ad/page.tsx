@@ -15,7 +15,7 @@ export default async function PlaceAd() {
       <SectionContainer>
         <Center h='80vh'>
           <Text>
-            You need to <TextLink href='/signIn'>sign in</TextLink> before you
+            You need to <TextLink href='/sign-in'>sign in</TextLink> before you
             can place an ad
           </Text>
         </Center>
