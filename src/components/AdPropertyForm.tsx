@@ -7,7 +7,7 @@ import { FormControlInputText } from './FormControlInputText'
 import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
 import { FormControlAreaAutocomplete } from './FormControlAreaAutocomplete/FormControlAreaAutocomplete'
-import { Button, Space } from '#/atoms'
+import { Button, Space, Text } from '#/atoms'
 
 type Option = { label: string; value: string }
 
@@ -15,27 +15,47 @@ type Inputs = {
   propertyTitle: string
   price: string
   propertyType: string
-  areaSelect: Option[]
+  selectedAreas: Option[]
 }
 
 export default function AdPropertyForm() {
+  const [errorMessage, setErrorMessage] = React.useState<string>('')
   const methods = useForm<Inputs>({
     defaultValues: {
       propertyTitle: '',
       price: '',
       propertyType: '',
-      areaSelect: [],
+      selectedAreas: [],
     },
     mode: 'all',
   })
 
   const router = useRouter()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const areaPlaceIds = data.areaSelect.map((area) => area.value)
-    const message = `Ad for ${data.propertyTitle} submitted successfully!`
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setErrorMessage('')
+    try {
+      const response = await fetch('/api/create-ad', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data,
+        }),
+      })
 
-    router.push(`/success-page?message=${message}`)
+      if (response.ok) {
+        return true
+        const message = `Ad for ${data.propertyTitle} submitted successfully!`
+        router.push(`/success-page?message=${message}`)
+      } else {
+        const responseData = await response.json()
+        setErrorMessage(responseData.errorMessage)
+      }
+    } catch (error) {
+      setErrorMessage('Something went wrong :/ Please try again later.')
+    }
   }
 
   React.useEffect(() => {
@@ -43,9 +63,7 @@ export default function AdPropertyForm() {
     methods.trigger()
   }, [methods])
 
-  console.log('hmm')
   return (
-    /* "handleSubmit" will validate inputs before invoking "onSubmit" */
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <FormFieldSet title='Property details'>
@@ -82,7 +100,7 @@ export default function AdPropertyForm() {
           />
           <FormControlAreaAutocomplete
             fieldTitle='Area'
-            name='areaSelect'
+            name='selectedAreas'
             rules={{
               required: {
                 value: true,
@@ -118,6 +136,12 @@ export default function AdPropertyForm() {
         </FormFieldSet>
         <Space h={20} />
         <Button type='submit' text='Submit Ad' />
+        <Space h={20} />
+        {errorMessage && (
+          <Text color='red' textAlign='center' css={{ w: '100%' }}>
+            {errorMessage}
+          </Text>
+        )}
       </form>
     </FormProvider>
   )
