@@ -48,7 +48,7 @@ export default defineConfig({
         buttonPrimary: { value: '0px 1px 4px rgba(0, 0, 0, 0.16)' },
       },
       sizes: {
-        'section-max-width': { value: '1200px' },
+        'section-max-width': { value: '800px' },
       },
       spacing:{
         'section-offset': { value: '20px' },

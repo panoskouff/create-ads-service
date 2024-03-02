@@ -29,6 +29,8 @@ export type TextProps = {
   | 'lineClamp'
   | 'truncate'
   | 'textTransform'
+  | 'textDecoration'
+  | 'fontStyle'
   | 'textAlign'
   | 'color'
 >
@@ -48,6 +50,8 @@ export const Text: React.FC<TextProps> = ({
   truncate,
   textTransform,
   textAlign,
+  textDecoration,
+  fontStyle,
   css,
   children,
   ...rest
@@ -65,6 +69,8 @@ export const Text: React.FC<TextProps> = ({
         lineHeight,
         textAlign,
         lineClamp,
+        textDecoration,
+        fontStyle,
         truncate,
         textTransform,
         ...css,
