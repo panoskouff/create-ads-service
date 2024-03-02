@@ -11,6 +11,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.10.2
     version: 5.10.2(prisma@5.10.2)
+  '@types/validator':
+    specifier: ^13.11.9
+    version: 13.11.9
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
@@ -35,6 +38,9 @@ dependencies:
   react-select:
     specifier: ^5.8.0
     version: 5.8.0(@types/react@18.2.0)(react-dom@18.2.0)(react@18.2.0)
+  validator:
+    specifier: ^13.11.0
+    version: 13.11.0
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -2415,6 +2421,10 @@ packages:
   /@types/unist@3.0.0:
     resolution: {integrity: sha512-MFETx3tbTjE7Uk6vvnWINA/1iJ7LuMdO4fcq8UfF0pRbj01aGLduVvQcRyswuACJdpnHgg8E3rQLhaRdNEJS0w==}
     dev: true
+
+  /@types/validator@13.11.9:
+    resolution: {integrity: sha512-FCTsikRozryfayPuiI46QzH3fnrOoctTjvOYZkho9BTFLCOZ2rgZJHMOVgCOfttjPJcgOx52EpkY0CMfy87MIw==}
+    dev: false
 
   /@types/yargs-parser@21.0.1:
     resolution: {integrity: sha512-axdPBuLuEJt0c4yI5OZssC19K2Mq1uKdrfZBzuxLvaztgqUtFYZUNw7lETExPYJR9jdEoIg4mb7RQKRQzOkeGQ==}
@@ -9570,6 +9580,11 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.5
       convert-source-map: 2.0.0
     dev: true
+
+  /validator@13.11.0:
+    resolution: {integrity: sha512-Ii+sehpSfZy+At5nPdnyMhx78fEoPDkR2XW/zimHEL3MyGJQOCQ7WeP20jPYRz7ZCpcKLB21NxuXHF3bxjStBQ==}
+    engines: {node: '>= 0.10'}
+    dev: false
 
   /vfile-location@4.1.0:
     resolution: {integrity: sha512-YF23YMyASIIJXpktBa4vIGLJ5Gs88UB/XePgqPmTa7cDA+JeO3yclbpheQYCHjVHBn/yePzrXuygIL+xbvRYHw==}

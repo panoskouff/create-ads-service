@@ -8,32 +8,34 @@ import { FormControlSelect } from './FormControlSelect'
 import { FormControlTextArea } from './FormControlTextArea'
 import { FormControlAreaAutocomplete } from './FormControlAreaAutocomplete/FormControlAreaAutocomplete'
 import { Button, Space, Text } from '#/atoms'
-
-type Option = { label: string; value: string }
-
-type Inputs = {
-  propertyTitle: string
-  price: string
-  propertyType: string
-  selectedAreas: Option[]
-}
+import { PropertyAd, PropertyAdFormInputs } from '#/types'
 
 export default function AdPropertyForm() {
   const [errorMessage, setErrorMessage] = React.useState<string>('')
-  const methods = useForm<Inputs>({
+  const methods = useForm<PropertyAdFormInputs>({
     defaultValues: {
       propertyTitle: '',
-      price: '',
-      propertyType: '',
-      selectedAreas: [],
+      propertyPrice: '',
+      propertyAdType: '',
+      propertyAreas: [],
+      propertyDescription: '',
     },
     mode: 'all',
   })
 
   const router = useRouter()
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<PropertyAdFormInputs> = async (data) => {
     setErrorMessage('')
+
+    const adaptedData: PropertyAd = {
+      ...data,
+      propertyAreas: data.propertyAreas.map((area) => ({
+        id: area.value,
+        name: area.label,
+      })),
+    }
+
     try {
       const response = await fetch('/api/create-ad', {
         method: 'POST',
@@ -41,7 +43,7 @@ export default function AdPropertyForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          data,
+          data: adaptedData,
         }),
       })
 
@@ -79,7 +81,7 @@ export default function AdPropertyForm() {
           />
           <FormControlSelect
             fieldTitle='Type'
-            name='propertyType'
+            name='propertyAdType'
             options={[
               {
                 label: 'Type',
@@ -100,7 +102,7 @@ export default function AdPropertyForm() {
           />
           <FormControlAreaAutocomplete
             fieldTitle='Area'
-            name='selectedAreas'
+            name='propertyAreas'
             rules={{
               required: {
                 value: true,
@@ -111,12 +113,12 @@ export default function AdPropertyForm() {
           />
           <FormControlInputText
             fieldTitle='Price in Euros'
-            name='price'
+            name='propertyPrice'
             type='string'
             onChange={(e) => {
               const newValue = e.target.value
               if (newValue.match(/^[0-9]*$/) || newValue === '') {
-                methods.setValue('price', newValue)
+                methods.setValue('propertyPrice', newValue)
               }
             }}
             rules={{
