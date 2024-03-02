@@ -5,6 +5,7 @@ import { Flex } from './Flex'
 export type CenterProps = PandaDivProps<
   | 'alignItems'
   | 'justifyContent'
+  | 'flexDirection'
   | 'gap'
   | 'h'
   | 'css'

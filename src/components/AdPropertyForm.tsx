@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 import { FormFieldSet } from './FormFieldSet'
 import { FormControlInputText } from './FormControlInputText'
 import { FormControlSelect } from './FormControlSelect'
@@ -28,7 +29,14 @@ export default function AdPropertyForm() {
     mode: 'all',
   })
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const router = useRouter()
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const areaPlaceIds = data.areaSelect.map((area) => area.value)
+    const message = `Ad for ${data.propertyTitle} submitted successfully!`
+
+    router.push(`/success-page?message=${message}`)
+  }
 
   React.useEffect(() => {
     // trigger validation for all fields so they are initially invalid (even though not touched yet)

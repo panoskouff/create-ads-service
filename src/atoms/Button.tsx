@@ -20,11 +20,11 @@ export const Button: React.FC<ButtonProps> = ({
     width='100%'
     borderRadius='100px'
     padding='3px'
-    backgroundColor='#005bed'
+    backgroundColor='#1862b5'
     transitionDuration='.2s'
     transitionProperty='background-color, color, border-color, box-shadow'
     transitionTimingFunction='ease-in-out'
-    _hover={{ backgroundColor: '#1862b5' }}
+    _hover={{ backgroundColor: '#005bed' }}
     _disabled={{
       bg: '#ccc',
       opacity: 0.5,
