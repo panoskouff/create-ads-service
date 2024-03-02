@@ -20,13 +20,21 @@ export const PropertyAdCard: React.FC<PropertyAd> = ({
         <Column gap='10px'>
           <div>
             {propertyAreas.map((area, index) => (
-              <Text key={area.placeId} css={{ marginRight: '10px' }}>
+              <Text
+                key={area.placeId}
+                css={{
+                  mr: '10px',
+                  p: '2px 8px',
+                  bg: '#f1f1f1',
+                  borderRadius: 5,
+                }}
+              >
                 {area.name}
               </Text>
             ))}
           </div>
           <Text>{propertyDescription}</Text>
-          <Text>For {propertyAdType}</Text>
+          <Text>to {propertyAdType}</Text>
         </Column>
       </Padding>
     </Container>

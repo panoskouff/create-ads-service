@@ -37,7 +37,6 @@ export const textStyles = defineTextStyles({
     description: 'The title text style',
     value: {
       ...styles.base.value,
-      fontFamily: 'tinos',
       lineHeight: '120%',
       fontSize: { base: '36px', sm: '54px', lg: '60px' },
     },
@@ -46,7 +45,6 @@ export const textStyles = defineTextStyles({
     description: 'The secondary title text style',
     value: {
       ...styles.base.value,
-      fontFamily: 'tinos',
       lineHeight: '120%',
       fontSize: { base: '36px', sm: '50px', md: '5.5vh' },
     },

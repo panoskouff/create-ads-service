@@ -2,7 +2,6 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '#/app/api/auth/[...nextauth]/authOptions'
 import Link from 'next/link'
 import { Center, Space, Text, TextLink } from '#/atoms'
-import { SectionContainer } from '#/components/SectionContainer'
 import { FetchAndDisplayUserPropertyAds } from '#/components/FetchAndDisplayUserPropertyAds'
 import { Suspense } from 'react'
 
@@ -11,18 +10,16 @@ export default async function Home() {
 
   if (!session) {
     return (
-      <SectionContainer>
-        <Center h='80vh'>
-          <Text>
-            Please <Link href='/sign-in'>sign in</Link> to proceed
-          </Text>
-        </Center>
-      </SectionContainer>
+      <Center h='80vh'>
+        <Text>
+          Please <Link href='/sign-in'>sign in</Link> to proceed
+        </Text>
+      </Center>
     )
   }
 
   return (
-    <SectionContainer>
+    <>
       <Text textStyle='title' css={{ display: 'block' }}>
         Your ads
       </Text>
@@ -32,6 +29,6 @@ export default async function Home() {
       </Suspense>
       <Space h={20} />
       <TextLink href='/place-ad'>Place an ad</TextLink>
-    </SectionContainer>
+    </>
   )
 }

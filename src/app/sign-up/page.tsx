@@ -1,7 +1,6 @@
 'use client'
 import { Button, Column, Input, Label, Space, Text } from '#/atoms'
 import { FormInput } from '#/components/FormInput'
-import { SectionContainer } from '#/components/SectionContainer'
 import { useState } from 'react'
 
 export default function SignUpPage() {
@@ -46,7 +45,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <SectionContainer maxW={400}>
+    <>
       <Text textStyle='title'>Sign up!</Text>
       <Space h={20} />
       <form onSubmit={handleSubmit}>
@@ -93,6 +92,6 @@ export default function SignUpPage() {
           {errorMessage && <Text color='red'>{errorMessage}</Text>}
         </Column>
       </form>
-    </SectionContainer>
+    </>
   )
 }

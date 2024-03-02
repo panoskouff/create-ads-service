@@ -1,5 +1,12 @@
 import '../theme/globalStyles'
-import { mulish, tinos } from '#/theme/fonts'
+import { mulish } from '#/theme/fonts'
+import { SectionContainer } from '#/components/SectionContainer'
+import { SessionProvider } from 'next-auth/react'
+import { Navigation } from '#/components/Navigation'
+import { getServerSession } from 'next-auth'
+import { authOptions } from './api/auth/[...nextauth]/authOptions'
+import { Container } from '#/styled-system/jsx'
+import { Space } from '#/atoms'
 
 export const metadata = {
   title: 'Todo App title',
@@ -11,9 +18,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions)
+
   return (
-    <html lang='en' className={`${mulish.variable} ${tinos.variable}`}>
-      <body>{children}</body>
+    <html lang='en' className={`${mulish.variable}`}>
+      <body>
+        <Container bg='#d3ffff' boxShadow='0 0  17px -4px black'>
+          <SectionContainer maxW={900}>
+            <Navigation session={session} />
+          </SectionContainer>
+        </Container>
+        <Space h={30} />
+        <SectionContainer>{children}</SectionContainer>
+      </body>
     </html>
   )
 }

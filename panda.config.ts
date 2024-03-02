@@ -33,7 +33,6 @@ export default defineConfig({
     tokens: {
       fonts: {
         mulish: { value: 'var(--mulish), sans-serif' },
-        tinos: { value: 'var(--tinos), serif' },
       },
       colors: {
         'text-color-primary': { value: '#000' },

@@ -1,7 +1,6 @@
 'use client'
 import { Button, Column, Input, Label, Space, Text } from '#/atoms'
 import { FormInput } from '#/components/FormInput'
-import { SectionContainer } from '#/components/SectionContainer'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 
@@ -42,7 +41,7 @@ export default function SignIn() {
   }
 
   return (
-    <SectionContainer maxW={400}>
+    <>
       <Text textStyle='title'>Sign in!</Text>
       <Space h={20} />
       <form onSubmit={handleSubmit}>
@@ -77,6 +76,6 @@ export default function SignIn() {
           {errorMessage && <Text color='red'>{errorMessage}</Text>}
         </Column>
       </form>
-    </SectionContainer>
+    </>
   )
 }
