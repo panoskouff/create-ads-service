@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import prisma from '#/libs/prismadb'
-import { NextResponse } from 'next/server'
 
 const userSchema = z.object({
   email: z.string().email(),

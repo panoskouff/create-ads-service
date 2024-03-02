@@ -2,7 +2,7 @@ export type PropertyAd = {
   propertyTitle: string
   propertyPrice: string
   propertyAdType: string
-  propertyAreas: { id: string; name: string }[]
+  propertyAreas: { placeId: string; name: string }[]
   propertyDescription?: string
 }
 

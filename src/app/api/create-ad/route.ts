@@ -2,7 +2,8 @@ import { getToken } from 'next-auth/jwt'
 import { NextRequest } from 'next/server'
 import { PropertyAdSchema, sanitizePropertyAdData } from './helpers'
 import { z } from 'zod'
-import { CreateJsonResponse } from '../apiHelpers'
+import { createJsonResponse } from '../apiHelpers'
+import prisma from '#/libs/prismadb'
 
 export async function POST(request: NextRequest) {
   const token = await getToken({
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
   })
 
   if (!token) {
-    return CreateJsonResponse(
+    return createJsonResponse(
       { errorMessage: 'You need to be signed in to create an ad' },
       401,
     )
@@ -23,20 +24,37 @@ export async function POST(request: NextRequest) {
     const parsedData = PropertyAdSchema.parse(body.data)
     const sanitizedData = sanitizePropertyAdData(parsedData)
 
-    console.log('body', JSON.stringify(sanitizedData, null, 2))
+    await prisma.propertyAd.create({
+      data: {
+        propertyTitle: sanitizedData.propertyTitle,
+        propertyPrice: sanitizedData.propertyPrice,
+        propertyAdType: sanitizedData.propertyAdType,
+        propertyAreas: {
+          connectOrCreate: sanitizedData.propertyAreas.map((area) => ({
+            where: { placeId: area.placeId },
+            create: { name: area.name, placeId: area.placeId },
+          })),
+        },
+        propertyDescription: sanitizedData.propertyDescription,
+        user: {
+          connect: {
+            id: token.sub,
+          },
+        },
+      },
+    })
 
-    // @todo save data to database
-
-    return CreateJsonResponse(
+    return createJsonResponse(
       { message: 'Your property ad has been created!' },
       200,
     )
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return CreateJsonResponse({ errorMessage: error.message }, 400)
+      return createJsonResponse({ errorMessage: error.message }, 400)
     }
 
-    return CreateJsonResponse(
+    console.error('Error creating ad:', error)
+    return createJsonResponse(
       { errorMessage: 'An unexpected error occurred' },
       500,
     )

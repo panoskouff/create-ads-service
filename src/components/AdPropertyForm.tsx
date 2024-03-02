@@ -31,7 +31,7 @@ export default function AdPropertyForm() {
     const adaptedData: PropertyAd = {
       ...data,
       propertyAreas: data.propertyAreas.map((area) => ({
-        id: area.value,
+        placeId: area.value,
         name: area.label,
       })),
     }
@@ -48,7 +48,6 @@ export default function AdPropertyForm() {
       })
 
       if (response.ok) {
-        return true
         const message = `Ad for ${data.propertyTitle} submitted successfully!`
         router.push(`/success-page?message=${message}`)
       } else {

@@ -1,4 +1,4 @@
-export const CreateJsonResponse = (data: any, status: number) => {
+export const createJsonResponse = (data: any, status: number) => {
   return new Response(JSON.stringify(data), {
     status,
     headers: {

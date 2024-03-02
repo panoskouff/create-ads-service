@@ -13,7 +13,7 @@ export const PropertyAdSchema = z.object({
   propertyAdType: z.enum(['rent', 'buy', 'exchange', 'donation']),
   propertyAreas: z.array(
     z.object({
-      id: z.string().min(1, { message: 'Area ID cannot be empty' }),
+      placeId: z.string().min(1, { message: 'Area ID cannot be empty' }),
       name: z
         .string()
         .min(1, { message: 'Area name cannot be empty' })
@@ -32,7 +32,7 @@ export function sanitizePropertyAdData(ad: PropertyAd): PropertyAd {
     propertyPrice: escape(ad.propertyPrice),
     propertyAdType: escape(ad.propertyAdType),
     propertyAreas: ad.propertyAreas.map((area) => ({
-      id: escape(area.id), // our id shouldn't contain illegal characters so its safe to do this
+      placeId: escape(area.placeId), // our id shouldn't contain illegal characters so its safe to do this
       name: escape(area.name),
     })),
     propertyDescription: ad.propertyDescription
