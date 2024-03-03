@@ -14,6 +14,7 @@ export type InputProps = Merge<
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => (
     <styled.input
+      type='text'
       ref={ref}
       background='#fff'
       border='1px solid #a7acb1'

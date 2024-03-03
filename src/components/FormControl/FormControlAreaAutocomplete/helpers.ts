@@ -1,4 +1,4 @@
-import { fetchAreaSuggestions } from '#/queries'
+import { fetchAreaSuggestions } from '#/network/queries'
 import { debounce } from '#/utils'
 import { CSSProperties } from 'react'
 import { ControllerFieldState } from 'react-hook-form'

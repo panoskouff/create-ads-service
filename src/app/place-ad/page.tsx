@@ -3,7 +3,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '#/app/api/auth/[...nextauth]/authOptions'
 import { Center, Space, Text, TextLink } from '#/atoms'
-import AdPropertyForm from '#/components/AdPropertyForm'
+import { AdPropertyForm } from '#/components/AdPropertyForm/'
 
 export default async function PlaceAd() {
   const session = await getServerSession(authOptions)

@@ -1,74 +1,29 @@
-'use client'
 import React from 'react'
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
-import { FormFieldSet } from './FormFieldSet'
+import { FormProvider, UseFormReturn } from 'react-hook-form'
 import {
   FormControlInputText,
   FormControlSelect,
   FormControlTextArea,
   FormControlAreaAutocomplete,
-} from './FormControl'
+} from '../FormControl'
 import { Button, Space, Text } from '#/atoms'
-import { PropertyAd, PropertyAdFormInputs } from '#/types'
+import { FormFieldSet } from '../FormFieldSet'
+import { PropertyAdFormInputs } from '#/types'
 
-export default function AdPropertyForm() {
-  const [errorMessage, setErrorMessage] = React.useState<string>('')
-  const methods = useForm<PropertyAdFormInputs>({
-    defaultValues: {
-      propertyTitle: '',
-      propertyPrice: '',
-      propertyAdType: '',
-      propertyAreas: [],
-      propertyDescription: '',
-    },
-    mode: 'all',
-  })
+interface AdPropertyFormPresentationProps {
+  methods: UseFormReturn<PropertyAdFormInputs>
+  onSubmit: () => void
+  errorMessage: string
+}
 
-  const router = useRouter()
-
-  const onSubmit: SubmitHandler<PropertyAdFormInputs> = async (data) => {
-    setErrorMessage('')
-
-    const adaptedData: PropertyAd = {
-      ...data,
-      propertyAreas: data.propertyAreas.map((area) => ({
-        placeId: area.value,
-        name: area.label,
-      })),
-    }
-
-    try {
-      const response = await fetch('/api/create-ad', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data: adaptedData,
-        }),
-      })
-
-      if (response.ok) {
-        const message = `Ad for ${data.propertyTitle} submitted successfully!`
-        router.push(`/success-page?message=${message}`)
-      } else {
-        const responseData = await response.json()
-        setErrorMessage(responseData.errorMessage)
-      }
-    } catch (error) {
-      setErrorMessage('Something went wrong :/ Please try again later.')
-    }
-  }
-
-  React.useEffect(() => {
-    // trigger validation for all fields so they are initially invalid (even though not touched yet)
-    methods.trigger()
-  }, [methods])
-
+const AdPropertyFormPresentation: React.FC<AdPropertyFormPresentationProps> = ({
+  methods,
+  onSubmit,
+  errorMessage,
+}) => {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <FormFieldSet title='Property details'>
           <FormControlInputText
             fieldTitle='Title'
@@ -84,11 +39,7 @@ export default function AdPropertyForm() {
             fieldTitle='Type'
             name='propertyAdType'
             options={[
-              {
-                label: 'Select an ad type',
-                value: '',
-                disabled: true,
-              },
+              { label: 'Select an ad type', value: '', disabled: true },
               { label: 'Rent', value: 'rent' },
               { label: 'Buy', value: 'buy' },
               { label: 'Exchange', value: 'exchange' },
@@ -115,13 +66,6 @@ export default function AdPropertyForm() {
           <FormControlInputText
             fieldTitle='Price in Euros'
             name='propertyPrice'
-            type='string'
-            onChange={(e) => {
-              const newValue = e.target.value
-              if (newValue.match(/^[0-9]*$/) || newValue === '') {
-                methods.setValue('propertyPrice', newValue)
-              }
-            }}
             rules={{
               required: {
                 value: true,
@@ -149,3 +93,5 @@ export default function AdPropertyForm() {
     </FormProvider>
   )
 }
+
+export default AdPropertyFormPresentation
