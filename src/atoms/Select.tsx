@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { HTMLStyledProps, styled } from '#/styled-system/jsx'
 
 export type PandaSelectProps = Pick<
@@ -11,7 +11,7 @@ export type SelectProps = Merge<
   Partial<PandaSelectProps>
 >
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ children, ...rest }, ref) => (
     <styled.div pos='relative'>
       <styled.select

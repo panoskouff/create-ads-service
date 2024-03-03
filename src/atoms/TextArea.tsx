@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { HTMLStyledProps, styled } from '#/styled-system/jsx'
 
 export type PandaTextAreaProps = Pick<
@@ -11,7 +11,7 @@ export type TextAreaProps = Merge<
   Partial<PandaTextAreaProps>
 >
 
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => (
     <styled.textarea
       ref={ref}
