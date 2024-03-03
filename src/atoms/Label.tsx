@@ -27,7 +27,7 @@ export const Label: React.FC<LabelProps & { required?: boolean }> = ({
   required,
   ...rest
 }) => (
-  <styled.label textStyle='body' color='text-color-primary' {...rest}>
+  <styled.label textStyle='form-label' color='text-color-primary' {...rest}>
     {children}
     {/* @todo add color to panda config */}
     {required && (

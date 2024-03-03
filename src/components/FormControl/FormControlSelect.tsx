@@ -7,9 +7,10 @@ import {
   UseControllerProps,
 } from 'react-hook-form'
 
-import { Label, Select, Text } from '#/atoms'
+import { FormTextError, Label, Select, Text } from '#/atoms'
 import { cn } from '#/utils/cn'
 import { styled } from '#/styled-system/jsx'
+import { formSelectStyles } from './styles'
 
 type SelectProps<T extends FieldValues> = {
   fieldTitle: string
@@ -28,12 +29,7 @@ export function FormControlSelect<T extends FieldValues>({
   return (
     <div>
       {fieldTitle && (
-        <Label
-          htmlFor={name}
-          required={Boolean(rules?.required)}
-          fontSize='1rem'
-          lineHeight='1.5rem'
-        >
+        <Label htmlFor={name} required={Boolean(rules?.required)}>
           {fieldTitle}
         </Label>
       )}
@@ -44,36 +40,14 @@ export function FormControlSelect<T extends FieldValues>({
         className={cn(
           fieldState.isTouched && 'touched',
           fieldState.invalid ? 'invalid' : 'valid',
+          formSelectStyles,
         )}
-        css={{
-          _invalid: { color: '#a0a2a5' },
-          _focusNotTouched: {
-            borderColor: '#1862b5',
-            boxShadow: '0 0 0 4px hsla(0, 0%, 100%, .7), 0 0 0 4px #005bed',
-            outline: 'none',
-          },
-          _touchedValid: {
-            borderColor: '#6cb946;',
-          },
-          _focusTouchedValid: {
-            boxShadow: '0 0 0 4px hsla(0,0%,100%,.7), 0 0 0 4px #6cb946',
-            outline: 'none',
-          },
-          _touchedInvalid: {
-            borderColor: 'red',
-          },
-          _focusTouchedInvalid: {
-            boxShadow: '0 0 0 4px hsla(0,0%,100%,.7),0 0 0 4px red',
-            outline: 'none',
-          },
-        }}
       >
         {options.map((option) => (
           <styled.option
             key={option.value}
             value={option.value}
             disabled={option.disabled}
-            // a0a2a5
             color='#2b2e31'
             fontSize='1rem'
           >
@@ -82,14 +56,7 @@ export function FormControlSelect<T extends FieldValues>({
         ))}
       </Select>
       {fieldState.isTouched && fieldState.error?.message && (
-        <Text
-          fontSize='0.75rem'
-          lineHeight='1.125rem'
-          fontWeight='600'
-          color='red'
-        >
-          {fieldState.error?.message}
-        </Text>
+        <FormTextError>{fieldState.error?.message}</FormTextError>
       )}
     </div>
   )

@@ -6,9 +6,10 @@ import {
   FieldValues,
   UseControllerProps,
 } from 'react-hook-form'
-import { Label, Text, TextArea } from '#/atoms'
+import { FormTextError, Label, Text, TextArea } from '#/atoms'
 import { cn } from '#/utils/cn'
 import { TextAreaProps } from '#/atoms/TextArea'
+import { formInputStyles } from './styles'
 
 type FormControlTextAreaProps<T extends FieldValues> = {
   fieldTitle: string
@@ -29,12 +30,7 @@ export function FormControlTextArea<T extends FieldValues>({
   return (
     <div>
       {fieldTitle && (
-        <Label
-          htmlFor={name}
-          required={Boolean(rules?.required)}
-          fontSize='1rem'
-          lineHeight='1.5rem'
-        >
+        <Label htmlFor={name} required={Boolean(rules?.required)}>
           {fieldTitle}
         </Label>
       )}
@@ -46,39 +42,12 @@ export function FormControlTextArea<T extends FieldValues>({
         className={cn(
           fieldState.isTouched && 'touched',
           fieldState.invalid ? 'invalid' : 'valid',
+          formInputStyles,
         )}
-        css={{
-          _focusNotTouched: {
-            borderColor: '#1862b5',
-            boxShadow: '0 0 0 4px hsla(0, 0%, 100%, .7), 0 0 0 4px #005bed',
-            outline: 'none',
-          },
-          _touchedValid: {
-            borderColor: '#6cb946;',
-          },
-          _focusTouchedValid: {
-            boxShadow: '0 0 0 4px hsla(0,0%,100%,.7), 0 0 0 4px #6cb946',
-            outline: 'none',
-          },
-          _touchedInvalid: {
-            borderColor: 'red',
-          },
-          _focusTouchedInvalid: {
-            boxShadow: '0 0 0 4px hsla(0,0%,100%,.7),0 0 0 4px red',
-            outline: 'none',
-          },
-        }}
         {...rest}
       />
       {fieldState.isTouched && fieldState.error?.message && (
-        <Text
-          fontSize='0.75rem'
-          lineHeight='1.125rem'
-          fontWeight='600'
-          color='red'
-        >
-          {fieldState.error?.message}
-        </Text>
+        <FormTextError>{fieldState.error?.message}</FormTextError>
       )}
     </div>
   )

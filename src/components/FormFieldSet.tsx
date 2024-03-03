@@ -19,6 +19,7 @@ export const FormFieldSet: React.FC<FormFieldSetProps> = ({
     gap='16px'
     p='48px 16px 12px 16px'
     border='1px solid #d7d9dd'
+    borderRadius='5px'
     {...rest}
   >
     <styled.legend pos='absolute' top='1rem'>

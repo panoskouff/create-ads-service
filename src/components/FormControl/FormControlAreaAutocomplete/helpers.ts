@@ -65,7 +65,7 @@ export const calculateStyles = (
     transition: 'border-color .2s ease-in-out, box-shadow .2s ease-in-out',
     border,
     borderColor,
-    borderRadius: '3px',
+    borderRadius: '5px',
     letterSpacing: 'inherit',
     willChange: 'box-shadow',
     boxShadow,

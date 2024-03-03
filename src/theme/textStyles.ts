@@ -71,4 +71,22 @@ export const textStyles = defineTextStyles({
       textTransform: 'uppercase',
     },
   },
+  // forms
+  'form-label': {
+    description: 'The form label text style',
+    value: {
+      ...styles.base.value,
+      fontSize: '16px',
+      lineHeight: '24px',
+    },
+  },
+  'form-text-error': {
+    description: 'The form field error text style',
+    value: {
+      ...styles.base.value,
+      fontSize: '12px',
+      lineHeight: '18px',
+      fontWeight: 600,
+    },
+  },
 })

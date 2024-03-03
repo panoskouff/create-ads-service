@@ -29,6 +29,7 @@ export default async function Home() {
       </Suspense>
       <Space h={20} />
       <TextLink href='/place-ad'>Place an ad</TextLink>
+      <Space h={20} />
     </>
   )
 }

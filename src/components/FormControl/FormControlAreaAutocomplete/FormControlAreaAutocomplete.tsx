@@ -7,7 +7,7 @@ import {
   UseControllerProps,
   Controller,
 } from 'react-hook-form'
-import { Label, Text } from '#/atoms'
+import { FormTextError, Label, Text } from '#/atoms'
 import AsyncSelect from 'react-select/async'
 import { calculateStyles, loadOptionsDebounced } from './helpers'
 
@@ -26,12 +26,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
   return (
     <div>
       {fieldTitle && (
-        <Label
-          htmlFor={name}
-          required={Boolean(rules?.required)}
-          fontSize='1rem'
-          lineHeight='1.5rem'
-        >
+        <Label htmlFor={name} required={Boolean(rules?.required)}>
           {fieldTitle}
         </Label>
       )}
@@ -65,14 +60,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
         )}
       />
       {fieldState.isTouched && fieldState.error?.message && (
-        <Text
-          fontSize='0.75rem'
-          lineHeight='1.125rem'
-          fontWeight='600'
-          color='red'
-        >
-          {fieldState.error?.message}
-        </Text>
+        <FormTextError>{fieldState.error?.message}</FormTextError>
       )}
     </div>
   )

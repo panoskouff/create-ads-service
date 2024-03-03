@@ -22,9 +22,12 @@ export default async function PlaceAd() {
   return (
     <>
       <Space h={20} />
-      <Text textStyle='title'>New property classified</Text>
+      <Text textStyle='title' fontSize='46px'>
+        New property classified
+      </Text>
       <Space h={20} />
       <AdPropertyForm />
+      <Space h={20} />
     </>
   )
 }
