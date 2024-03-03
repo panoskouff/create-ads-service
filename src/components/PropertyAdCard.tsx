@@ -18,12 +18,11 @@ export const PropertyAdCard: React.FC<PropertyAd> = ({
         </Row>
         <Space h={20} />
         <Column gap='10px'>
-          <div>
+          <Row gap='10px' flexWrap='wrap'>
             {propertyAreas.map((area, index) => (
               <Text
                 key={area.placeId}
                 css={{
-                  mr: '10px',
                   p: '2px 8px',
                   bg: '#f1f1f1',
                   borderRadius: 5,
@@ -32,7 +31,7 @@ export const PropertyAdCard: React.FC<PropertyAd> = ({
                 {area.name}
               </Text>
             ))}
-          </div>
+          </Row>
           <Text>{propertyDescription}</Text>
           <Text>to {propertyAdType}</Text>
         </Column>

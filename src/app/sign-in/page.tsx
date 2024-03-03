@@ -1,5 +1,5 @@
 'use client'
-import { Button, Column, Input, Label, Space, Text } from '#/atoms'
+import { Button, Column, Input, Label, Space, Text, TextLink } from '#/atoms'
 import { FormInput } from '#/components/FormInput'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
@@ -74,6 +74,9 @@ export default function SignIn() {
           <div /> {/* spacer */}
           {isLoading && <Text>Submitting form...</Text>}
           {errorMessage && <Text color='red'>{errorMessage}</Text>}
+          <div /> {/* spacer */}
+          <Text>Don{"'"}t have an account ?&nbsp;</Text>
+          <TextLink href='/sign-up'>Sign up</TextLink>
         </Column>
       </form>
     </>
