@@ -27,7 +27,7 @@ export const formInputStyles = css(formInputStylesBase)
 
 const formSelectStylesBase: SystemStyleObject = {
   ...formInputStylesBase,
-  _invalid: { color: '#a0a2a5' },
+  _invalid: { color: '#7e7f85' },
 }
 export const formSelectStyles = css(formSelectStylesBase)
 

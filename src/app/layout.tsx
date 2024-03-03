@@ -24,7 +24,7 @@ export default async function RootLayout({
     <html lang='en' className={`${mulish.variable}`}>
       <body>
         <Container bg='#d3ffff' boxShadow='0 0  17px -4px black'>
-          <SectionContainer maxW={900}>
+          <SectionContainer maxW={800}>
             <Navigation session={session} />
           </SectionContainer>
         </Container>

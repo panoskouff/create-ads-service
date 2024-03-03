@@ -48,8 +48,10 @@ export function FormControlSelect<T extends FieldValues>({
             key={option.value}
             value={option.value}
             disabled={option.disabled}
+            display={option.disabled ? 'none' : 'block'}
             color='#2b2e31'
             fontSize='1rem'
+            fontFamily='mulish'
           >
             {option.label}
           </styled.option>

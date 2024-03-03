@@ -16,6 +16,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     <styled.div pos='relative'>
       <styled.select
         ref={ref}
+        fontFamily='mulish'
         appearance='none'
         backgroundColor='#fff'
         border='1px solid #a7acb1'

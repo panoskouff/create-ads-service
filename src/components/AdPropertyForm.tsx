@@ -3,10 +3,12 @@ import React from 'react'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { FormFieldSet } from './FormFieldSet'
-import { FormControlInputText } from './FormControl/FormControlInputText'
-import { FormControlSelect } from './FormControl/FormControlSelect'
-import { FormControlTextArea } from './FormControl/FormControlTextArea'
-import { FormControlAreaAutocomplete } from './FormControl/FormControlAreaAutocomplete/FormControlAreaAutocomplete'
+import {
+  FormControlInputText,
+  FormControlSelect,
+  FormControlTextArea,
+  FormControlAreaAutocomplete,
+} from './FormControl'
 import { Button, Space, Text } from '#/atoms'
 import { PropertyAd, PropertyAdFormInputs } from '#/types'
 
@@ -83,7 +85,7 @@ export default function AdPropertyForm() {
             name='propertyAdType'
             options={[
               {
-                label: 'Type',
+                label: 'Select an ad type',
                 value: '',
                 disabled: true,
               },
