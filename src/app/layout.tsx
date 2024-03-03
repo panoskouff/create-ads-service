@@ -1,7 +1,6 @@
 import '../theme/globalStyles'
 import { mulish } from '#/theme/fonts'
 import { SectionContainer } from '#/components/SectionContainer'
-import { SessionProvider } from 'next-auth/react'
 import { Navigation } from '#/components/Navigation'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/authOptions'

@@ -53,7 +53,7 @@ describe('Page', () => {
     expect(props.fallback).toEqual(<Text>Loading your property ads...</Text>)
   })
 
-  it('should render FetchAndDisplayUserPropertyAds once its loaded', async () => {
+  it('should render FetchAndDisplayUserPropertyAds once ads are loaded', async () => {
     render(await Page())
 
     expect(
