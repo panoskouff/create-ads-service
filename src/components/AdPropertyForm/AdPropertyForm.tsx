@@ -16,7 +16,7 @@ interface AdPropertyFormPresentationProps {
   errorMessage: string
 }
 
-const AdPropertyFormPresentation: React.FC<AdPropertyFormPresentationProps> = ({
+export const AdPropertyForm: React.FC<AdPropertyFormPresentationProps> = ({
   methods,
   onSubmit,
   errorMessage,
@@ -93,5 +93,3 @@ const AdPropertyFormPresentation: React.FC<AdPropertyFormPresentationProps> = ({
     </FormProvider>
   )
 }
-
-export default AdPropertyFormPresentation

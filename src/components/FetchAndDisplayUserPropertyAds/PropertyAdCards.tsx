@@ -1,6 +1,14 @@
 import { Space } from '#/atoms'
-import { PropertyAd } from '#/types'
+// import { PropertyAd } from '#/types'
 import { PropertyAdCard } from '../PropertyAdCard'
+
+export type PropertyAd = {
+  propertyTitle: string
+  propertyPrice: string
+  propertyAdType: string
+  propertyAreas: { placeId: string; name: string }[]
+  propertyDescription?: string
+}
 
 type PropertyAdCardWithId = PropertyAd & { id: string }
 

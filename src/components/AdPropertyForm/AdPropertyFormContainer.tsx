@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { PropertyAdFormInputs } from '#/types'
-import AdPropertyForm from './AdPropertyForm'
+import { AdPropertyForm } from './AdPropertyForm'
 import { createAdMutation } from '#/network/mutations'
 import { adaptInputDataForRequest } from './helpers'
 
