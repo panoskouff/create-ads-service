@@ -15,8 +15,7 @@ Create Ads Service is a full-stack web application built with [Next.js](https://
 
 - Node.js
 - npm or pnpm
-- MongoDB
-
+  
 ## Installation
 
 1. Clone the repository:
