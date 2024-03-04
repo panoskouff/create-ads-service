@@ -40,15 +40,13 @@ Create Ads Service is a full-stack web application built with [Next.js](https://
    cp .env-sample .env
    ```
 
-4. Generate Prisma client:
+4. Generate Prisma client and types:
 
    ```bash
    npx prisma generate
    # or
    pnpx prisma generate
    ```
-
-   > Note: If Prisma types are not appearing, ensure you've run `npx prisma generate` or `pnpx prisma generate`.
 
 5. Run the development server:
 
