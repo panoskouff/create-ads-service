@@ -5,9 +5,7 @@ export const fetchAreaSuggestions = async (
   inputValue: string,
 ): Promise<AreaSuggestionsAdaptedResponse> => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/area-suggestions?input=${inputValue}`,
-    )
+    const response = await fetch(`/api/area-suggestions?input=${inputValue}`)
 
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`)
