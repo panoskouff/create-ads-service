@@ -9,13 +9,19 @@ export default function SuccessPage() {
 
   const displayMessage = !!message ? message : 'Success!'
 
+  const fullPageRedirect = () => {
+    window.location.href = '/'
+  }
+
   return (
     <Center h='80vh' flexDirection='column'>
       <Text fontSize={32} textAlign='center'>
         {displayMessage}
       </Text>
       <Space h={20} />
-      <TextLink href='/'>Back to home</TextLink>
+      <TextLink href='#' onClick={fullPageRedirect}>
+        Back to home
+      </TextLink>
     </Center>
   )
 }

@@ -6,7 +6,7 @@ export const PropertyAdSchema = z.object({
   propertyTitle: z
     .string()
     .min(1, { message: 'Property title cannot be empty' })
-    .max(100, { message: 'Property title must be under 100 characters' }),
+    .max(155, { message: 'Property title must be under 155 characters' }),
   propertyPrice: z
     .string()
     .regex(/^\d+$/, { message: 'Property price must contain only numbers' }),
