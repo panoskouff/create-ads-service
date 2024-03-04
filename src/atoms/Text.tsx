@@ -1,6 +1,6 @@
 import React from 'react'
 import { css as parsePandaCSS } from '../styled-system/css'
-import clsx from 'clsx'
+import { cn } from '#/utils'
 
 type PandaCssProps = Parameters<typeof parsePandaCSS>[0]
 
@@ -57,7 +57,7 @@ export const Text: React.FC<TextProps> = ({
   ...rest
 }) => (
   <Element
-    className={clsx(
+    className={cn(
       className,
       parsePandaCSS({
         textStyle,
