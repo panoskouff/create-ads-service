@@ -10,20 +10,20 @@ import { Button, Space, Text } from '#/atoms'
 import { FormFieldSet } from '../FormFieldSet'
 import { PropertyAdFormInputs } from '#/types'
 
-interface AdPropertyFormPresentationProps {
+export type AdPropertyFormProps = {
   methods: UseFormReturn<PropertyAdFormInputs>
   onSubmit: () => void
   errorMessage: string
 }
 
-export const AdPropertyForm: React.FC<AdPropertyFormPresentationProps> = ({
+export const AdPropertyForm: React.FC<AdPropertyFormProps> = ({
   methods,
   onSubmit,
   errorMessage,
 }) => {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} data-testid='ad-property-form'>
         <FormFieldSet title='Property details'>
           <FormControlInputText
             fieldTitle='Title'
@@ -85,7 +85,12 @@ export const AdPropertyForm: React.FC<AdPropertyFormPresentationProps> = ({
         <Button type='submit' text='Submit Ad' />
         <Space h={20} />
         {errorMessage && (
-          <Text color='red' textAlign='center' css={{ w: '100%' }}>
+          <Text
+            color='red'
+            textAlign='center'
+            css={{ w: '100%' }}
+            data-testid='error-message'
+          >
             {errorMessage}
           </Text>
         )}
