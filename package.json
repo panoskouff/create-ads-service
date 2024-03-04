@@ -1,5 +1,9 @@
 {
-  "name": "my-starter",
+  "name": "create-ads-service",
+  "description": "A fullstack project with Next.js, Prisma, TypeScript and MongoDB",
+  "repository": {
+    "url": "https://github.com/panoskouff/create-ads-service"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
