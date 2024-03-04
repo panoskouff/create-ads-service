@@ -4,13 +4,14 @@
  */
 import { css } from '../styled-system/css'
 import Link, { LinkProps } from 'next/link'
-import clsx from 'clsx'
+import { cn } from '#/utils'
 
 // @todo add this to test styles definitions ?
 const textLink = css({
   display: 'inline-block',
   fontSize: '18px',
   fontWeight: 700,
+  fontFamily: 'mulish',
   color: 'text-color-secondary',
   boxShadow: 'inset 0 -1px 0 0 var(--colors-text-color-tertiary)',
   transition: 'all 200ms ease',
@@ -42,8 +43,7 @@ export const TextLink = ({
   ...rest
 }: TextLinkProps) => (
   <Link
-    // add textLinkVariant to className if variant is true
-    className={clsx(textLink, className, variant && textLinkVariant)}
+    className={cn(textLink, className, variant && textLinkVariant)}
     href={href}
     target={openInNewTab ? '_blank' : undefined}
     rel={openInNewTab ? 'noopener noreferrer' : undefined}
