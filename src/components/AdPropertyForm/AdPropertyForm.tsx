@@ -64,6 +64,7 @@ export const AdPropertyForm: React.FC<AdPropertyFormProps> = ({
             }}
           />
           <FormControlInputText
+            type='number'
             fieldTitle='Price in Euros'
             name='propertyPrice'
             rules={{
