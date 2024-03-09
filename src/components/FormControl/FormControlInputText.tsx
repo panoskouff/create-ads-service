@@ -6,12 +6,11 @@ import {
   FieldValues,
 } from 'react-hook-form'
 
-import { FormTextError, Input, Label, Text } from '#/atoms'
+import { FormTextError, Input, Label } from '#/atoms'
 import { cn } from '#/utils/cn'
 import React from 'react'
 import { InputProps } from '#/atoms/Input'
 import { formInputTextStyles } from './styles'
-import { css } from '#/styled-system/css'
 
 type FormControlInputProps<T extends FieldValues> = {
   fieldTitle: string

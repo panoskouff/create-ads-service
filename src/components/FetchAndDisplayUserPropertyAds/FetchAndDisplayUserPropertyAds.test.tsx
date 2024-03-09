@@ -108,12 +108,10 @@ describe('FetchAndDisplayUserPropertyAds', () => {
     expect(container.innerHTML).toContain("You haven't placed an ad yet...")
   })
 
-  it.only(`should fetch propertyAreas for each propertyAd and render a PropertyAdCard 
+  it(`should fetch propertyAreas for each propertyAd and render a PropertyAdCard 
     for each ad after combining the props correctly `, async () => {
-    const { container } = render(await FetchAndDisplayUserPropertyAds())
+    render(await FetchAndDisplayUserPropertyAds())
 
-    // expect propetryAdCards props to have been combined correctly
-    // get props from MockPropertyAdCards
     const propertyAdCardsProps =
       MockPropertyAdCards.mock.calls[0][0].propertyAds
     expect(propertyAdCardsProps).toEqual([
