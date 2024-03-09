@@ -26,6 +26,8 @@ export function FormControlSelect<T extends FieldValues>({
   const { control } = useFormContext<T>()
   const { field, fieldState } = useController({ name, control, rules })
 
+  const shouldShowErrorMessage = fieldState.isTouched && fieldState.invalid
+
   return (
     <div>
       {fieldTitle && (
@@ -36,12 +38,17 @@ export function FormControlSelect<T extends FieldValues>({
       <Select
         {...field}
         required={Boolean(rules?.required)}
-        id={name}
+        aria-required={Boolean(rules?.required)}
         className={cn(
           fieldState.isTouched && 'touched',
           fieldState.invalid ? 'invalid' : 'valid',
           formSelectStyles,
         )}
+        id={name}
+        aria-invalid={fieldState.invalid}
+        aria-describedby={
+          shouldShowErrorMessage ? `${name}-error-message` : undefined
+        }
       >
         {options.map((option) => (
           <styled.option
@@ -52,13 +59,16 @@ export function FormControlSelect<T extends FieldValues>({
             color='#2b2e31'
             fontSize='1rem'
             fontFamily='mulish'
+            aria-selected={field.value === option.value ? 'true' : 'false'}
           >
             {option.label}
           </styled.option>
         ))}
       </Select>
       {fieldState.isTouched && fieldState.error?.message && (
-        <FormTextError>{fieldState.error?.message}</FormTextError>
+        <FormTextError id={`${name}-error-message`}>
+          {fieldState.error?.message}
+        </FormTextError>
       )}
     </div>
   )

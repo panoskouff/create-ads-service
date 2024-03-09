@@ -28,6 +28,9 @@ export function FormControlInputText<T extends FieldValues>({
 }: FormControlInputProps<T>) {
   const { control } = useFormContext<T>()
   const { field, fieldState } = useController({ name, control, rules })
+
+  const shouldShowErrorMessage = fieldState.isTouched && fieldState.invalid
+
   return (
     <div>
       {fieldTitle && (
@@ -39,16 +42,23 @@ export function FormControlInputText<T extends FieldValues>({
         {...field}
         placeholder={placeholder}
         required={Boolean(rules?.required)}
-        id={name}
+        aria-required={Boolean(rules?.required)}
         className={cn(
           fieldState.isTouched && 'touched',
           fieldState.invalid ? 'invalid' : 'valid',
           formInputTextStyles,
         )}
+        id={name}
+        aria-invalid={fieldState.invalid}
+        aria-describedby={
+          shouldShowErrorMessage ? `${name}-error-message` : undefined
+        }
         {...rest}
       />
       {fieldState.isTouched && fieldState.error?.message && (
-        <FormTextError>{fieldState.error?.message}</FormTextError>
+        <FormTextError id={`${name}-error-message`}>
+          {fieldState.error?.message}
+        </FormTextError>
       )}
     </div>
   )

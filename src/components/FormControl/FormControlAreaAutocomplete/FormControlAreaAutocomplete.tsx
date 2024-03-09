@@ -23,10 +23,14 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
   const { control } = useFormContext<T>()
   const { fieldState } = useController({ name, control, rules })
 
+  const shouldShowErrorMessage = fieldState.isTouched && fieldState.invalid
+
   return (
     <div>
       {fieldTitle && (
-        <Label htmlFor={name} required={Boolean(rules?.required)}>
+        /* we use labelledby to associate the label with the input, because
+        react-select doesn't like id as prop so we can't use htmlFor */
+        <Label id={`${name}-label`} required={Boolean(rules?.required)}>
           {fieldTitle}
         </Label>
       )}
@@ -36,6 +40,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
         rules={rules}
         render={({ field }) => (
           <AsyncSelect
+            {...field}
             styles={{
               control: (baseStyles, state) => {
                 const myStyles = calculateStyles(state.isFocused, fieldState)
@@ -47,6 +52,9 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
                 }
               },
             }}
+            required={Boolean(rules?.required)}
+            aria-required={Boolean(rules?.required)}
+            placeholder='Type to search for an area'
             isMulti
             loadOptions={loadOptionsDebounced}
             filterOption={(option, inputValue) => {
@@ -54,12 +62,18 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
                 .toLowerCase()
                 .includes(inputValue.toLowerCase())
             }}
-            {...field}
+            aria-labelledby={`${name}-label`}
+            aria-invalid={fieldState.invalid}
+            aria-describedby={
+              shouldShowErrorMessage ? `${name}-error-message` : undefined
+            }
           />
         )}
       />
       {fieldState.isTouched && fieldState.error?.message && (
-        <FormTextError>{fieldState.error?.message}</FormTextError>
+        <FormTextError id={`${name}-error-message`}>
+          {fieldState.error?.message}
+        </FormTextError>
       )}
     </div>
   )
