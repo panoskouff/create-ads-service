@@ -56,7 +56,7 @@ export function FormControlInputText<T extends FieldValues>({
       />
       {fieldState.isTouched && fieldState.error?.message && (
         <FormTextError id={`${name}-error-message`}>
-          {fieldState.error?.message}
+          {fieldState.error.message}
         </FormTextError>
       )}
     </div>
