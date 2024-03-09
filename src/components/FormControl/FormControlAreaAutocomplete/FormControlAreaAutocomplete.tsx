@@ -62,6 +62,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
                 .toLowerCase()
                 .includes(inputValue.toLowerCase())
             }}
+            instanceId={name}
             aria-labelledby={`${name}-label`}
             aria-invalid={fieldState.invalid}
             aria-describedby={
@@ -72,7 +73,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
       />
       {fieldState.isTouched && fieldState.error?.message && (
         <FormTextError id={`${name}-error-message`}>
-          {fieldState.error?.message}
+          {fieldState.error.message}
         </FormTextError>
       )}
     </div>

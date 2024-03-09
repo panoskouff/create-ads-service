@@ -67,7 +67,7 @@ export function FormControlSelect<T extends FieldValues>({
       </Select>
       {fieldState.isTouched && fieldState.error?.message && (
         <FormTextError id={`${name}-error-message`}>
-          {fieldState.error?.message}
+          {fieldState.error.message}
         </FormTextError>
       )}
     </div>

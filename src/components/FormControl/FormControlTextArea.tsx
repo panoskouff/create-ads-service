@@ -6,7 +6,7 @@ import {
   FieldValues,
   UseControllerProps,
 } from 'react-hook-form'
-import { FormTextError, Label, Text, TextArea } from '#/atoms'
+import { FormTextError, Label, TextArea } from '#/atoms'
 import { cn } from '#/utils/cn'
 import { TextAreaProps } from '#/atoms/TextArea'
 import { formInputStyles } from './styles'
@@ -55,7 +55,7 @@ export function FormControlTextArea<T extends FieldValues>({
       />
       {fieldState.isTouched && fieldState.error?.message && (
         <FormTextError id={`${name}-error-message`}>
-          {fieldState.error?.message}
+          {fieldState.error.message}
         </FormTextError>
       )}
     </div>
