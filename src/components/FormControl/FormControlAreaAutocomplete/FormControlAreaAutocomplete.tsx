@@ -25,12 +25,13 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
 
   const shouldShowErrorMessage = fieldState.isTouched && fieldState.invalid
 
+  // react-select adds the following id in this format
+  const reactSelectInputId = `react-select-${name}-input`
+
   return (
     <div>
       {fieldTitle && (
-        /* we use labelledby to associate the label with the input, because
-        react-select doesn't like id as prop so we can't use htmlFor */
-        <Label id={`${name}-label`} required={Boolean(rules?.required)}>
+        <Label htmlFor={reactSelectInputId} required={Boolean(rules?.required)}>
           {fieldTitle}
         </Label>
       )}
@@ -63,7 +64,6 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
                 .includes(inputValue.toLowerCase())
             }}
             instanceId={name}
-            aria-labelledby={`${name}-label`}
             aria-invalid={fieldState.invalid}
             aria-describedby={
               shouldShowErrorMessage ? `${name}-error-message` : undefined
