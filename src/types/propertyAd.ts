@@ -1,3 +1,5 @@
+export type PropertyAreaOption = { label: string; value: string }
+
 export type PropertyAd = {
   propertyTitle: string
   propertyPrice: string
@@ -7,5 +9,5 @@ export type PropertyAd = {
 }
 
 export type PropertyAdFormInputs = Omit<PropertyAd, 'propertyAreas'> & {
-  propertyAreas: { label: string; value: string }[]
+  propertyAreas: PropertyAreaOption[]
 }

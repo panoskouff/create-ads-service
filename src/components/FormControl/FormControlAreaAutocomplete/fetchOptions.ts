@@ -1,7 +1,9 @@
 import { fetchAreaSuggestions } from '#/network/queries'
-type Option = { label: string; value: string }
+import { PropertyAreaOption } from '#/types'
 
-export const fetchOptions = async (inputValue: string): Promise<Option[]> => {
+export const fetchOptions = async (
+  inputValue: string,
+): Promise<PropertyAreaOption[]> => {
   if (inputValue.length < 3) {
     return []
   }

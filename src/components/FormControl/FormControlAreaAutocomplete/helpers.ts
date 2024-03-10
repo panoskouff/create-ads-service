@@ -2,6 +2,7 @@ import { debounce } from '#/utils'
 import { CSSProperties } from 'react'
 import { ControllerFieldState } from 'react-hook-form'
 import { fetchOptions } from './fetchOptions'
+import { PropertyAreaOption } from '#/types'
 
 export const loadOptionsDebounced = debounce(
   // react-select doesn't expose a sane type for the callback
@@ -11,8 +12,10 @@ export const loadOptionsDebounced = debounce(
   500,
 )
 
-// react select doesn't expose FilterOptionOption type needed here
-export const filterOption = (option: any, inputValue: string) => {
+export const filterOption = (
+  option: PropertyAreaOption,
+  inputValue: string,
+) => {
   return option.label.toLowerCase().includes(inputValue.toLowerCase())
 }
 
