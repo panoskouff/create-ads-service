@@ -41,7 +41,7 @@ function FormWrapper<T extends FieldValues>({
 
 const fieldTitle = 'mock-label-field-title'
 const placeholder = 'mock-textarea-placeholder'
-const name = 'mock-field-name'
+const fieldName = 'mock-field-name'
 
 beforeEach(() => {
   mockCn.mockClear()
@@ -56,7 +56,7 @@ describe('FormControlTextArea', () => {
         <FormWrapper
           useFormProps={{
             defaultValues: {
-              name: '',
+              [fieldName]: '',
             },
             mode: 'all',
           }}
@@ -64,7 +64,7 @@ describe('FormControlTextArea', () => {
           <FormControlTextArea
             fieldTitle={fieldTitle}
             placeholder={placeholder}
-            name={name}
+            name={fieldName}
             rules={{ required: true }}
           />
         </FormWrapper>,
@@ -73,7 +73,7 @@ describe('FormControlTextArea', () => {
 
     expect(screen.getByText('[Label]')).toBeInTheDocument()
     expect(MockLabel).toHaveBeenCalledWith(
-      { htmlFor: name, required: true, children: fieldTitle },
+      { htmlFor: fieldName, required: true, children: fieldTitle },
       {},
     )
 
@@ -82,7 +82,7 @@ describe('FormControlTextArea', () => {
     ) as HTMLTextAreaElement
     expect(textarea).toBeInTheDocument()
     expect(textarea.required).toBe(true)
-    expect(textarea.id).toBe(name)
+    expect(textarea.id).toBe(fieldName)
     expect(textarea.getAttribute('aria-invalid')).toBe('true')
     expect(textarea.getAttribute('aria-required')).toBe('true')
     const classNames = mockCn.mock.calls[1]
@@ -99,7 +99,7 @@ describe('FormControlTextArea', () => {
         <FormWrapper
           useFormProps={{
             defaultValues: {
-              name: '',
+              [fieldName]: '',
             },
             mode: 'all',
           }}
@@ -107,7 +107,7 @@ describe('FormControlTextArea', () => {
           <FormControlTextArea
             fieldTitle={fieldTitle}
             placeholder={placeholder}
-            name={name}
+            name={fieldName}
             rules={{
               required: { value: true, message: 'This field is required' },
             }}
@@ -142,11 +142,14 @@ describe('FormControlTextArea', () => {
     await waitFor(() => {
       expect(textarea.getAttribute('aria-invalid')).toBe('true')
       expect(textarea.getAttribute('aria-describedby')).toBe(
-        `${name}-error-message`,
+        `${fieldName}-error-message`,
       )
       expect(screen.queryByText('[TextError]')).toBeInTheDocument()
       expect(MockFormTextError).toHaveBeenCalledWith(
-        { id: `${name}-error-message`, children: 'This field is required' },
+        {
+          id: `${fieldName}-error-message`,
+          children: 'This field is required',
+        },
         {},
       )
     })
@@ -158,7 +161,7 @@ describe('FormControlTextArea', () => {
         <FormWrapper
           useFormProps={{
             defaultValues: {
-              name: '',
+              [fieldName]: '',
             },
             mode: 'all',
           }}
@@ -166,7 +169,7 @@ describe('FormControlTextArea', () => {
           <FormControlTextArea
             fieldTitle={fieldTitle}
             placeholder={placeholder}
-            name={name}
+            name={fieldName}
             rules={{ required: false }}
           />
         </FormWrapper>,
