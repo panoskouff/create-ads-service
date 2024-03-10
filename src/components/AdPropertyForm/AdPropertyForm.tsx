@@ -90,6 +90,7 @@ export const AdPropertyForm: React.FC<AdPropertyFormProps> = ({
             color='red'
             textAlign='center'
             css={{ w: '100%' }}
+            aria-live='polite'
             data-testid='error-message'
           >
             {errorMessage}
