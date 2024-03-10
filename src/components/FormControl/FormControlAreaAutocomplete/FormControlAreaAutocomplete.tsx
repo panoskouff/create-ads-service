@@ -7,9 +7,9 @@ import {
   UseControllerProps,
   Controller,
 } from 'react-hook-form'
-import { FormTextError, Label, Text } from '#/atoms'
-import AsyncSelect from 'react-select/async'
-import { calculateStyles, loadOptionsDebounced } from './helpers'
+import { FormTextError, Label } from '#/atoms'
+import AutoCompleteSelect from 'react-select/async'
+import { calculateStyles, loadOptionsDebounced, filterOption } from './helpers'
 
 type FormControlAreaAutocompleteProps<T extends FieldValues> = {
   fieldTitle: string
@@ -40,7 +40,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
         control={control}
         rules={rules}
         render={({ field }) => (
-          <AsyncSelect
+          <AutoCompleteSelect
             {...field}
             styles={{
               control: (baseStyles, state) => {
@@ -58,11 +58,7 @@ export function FormControlAreaAutocomplete<T extends FieldValues>({
             placeholder='Type to search for an area'
             isMulti
             loadOptions={loadOptionsDebounced}
-            filterOption={(option, inputValue) => {
-              return option.label
-                .toLowerCase()
-                .includes(inputValue.toLowerCase())
-            }}
+            filterOption={filterOption}
             instanceId={name}
             aria-invalid={fieldState.invalid}
             aria-describedby={

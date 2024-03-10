@@ -20,11 +20,17 @@ export const fetchOptions = async (inputValue: string): Promise<Option[]> => {
 }
 
 export const loadOptionsDebounced = debounce(
+  // react-select doesn't expose a sane type for the callback
   (inputValue: string, callback: (options: any) => void) => {
     fetchOptions(inputValue).then((options) => callback(options))
   },
   500,
 )
+
+// react select doesn't expose FilterOptionOption type needed here
+export const filterOption = (option: any, inputValue: string) => {
+  return option.label.toLowerCase().includes(inputValue.toLowerCase())
+}
 
 export const calculateStyles = (
   isFocused: boolean,
