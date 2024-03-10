@@ -1,23 +1,7 @@
-import { fetchAreaSuggestions } from '#/network/queries'
 import { debounce } from '#/utils'
 import { CSSProperties } from 'react'
 import { ControllerFieldState } from 'react-hook-form'
-
-type Option = { label: string; value: string }
-
-export const fetchOptions = async (inputValue: string): Promise<Option[]> => {
-  if (inputValue.length < 3) {
-    return []
-  }
-
-  const { data } = await fetchAreaSuggestions(inputValue)
-
-  if (!data) {
-    return []
-  }
-
-  return data
-}
+import { fetchOptions } from './fetchOptions'
 
 export const loadOptionsDebounced = debounce(
   // react-select doesn't expose a sane type for the callback
