@@ -3,14 +3,17 @@ import { render, screen } from '@testing-library/react'
 import { Text } from '#/atoms'
 import Page from './page'
 
-jest.mock('#/components/FetchAndDisplayUserPropertyAds', () => {
-  return {
-    __esModule: true,
-    FetchAndDisplayUserPropertyAds: jest.fn(() => (
-      <div>[FetchAndDisplayUserPropertyAds]</div>
-    )),
-  }
-})
+jest.mock(
+  '#/components/FetchAndDisplayUserPropertyAds/FetchAndDisplayUserPropertyAds',
+  () => {
+    return {
+      __esModule: true,
+      FetchAndDisplayUserPropertyAds: jest.fn(() => (
+        <div>[FetchAndDisplayUserPropertyAds]</div>
+      )),
+    }
+  },
+)
 
 jest.mock('next-auth', () => ({
   getServerSession: jest.fn(() => ({ user: { id: 'mock-user-id' } })),
