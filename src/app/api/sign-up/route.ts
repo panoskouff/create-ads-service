@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import prisma from '#/libs/prismadb'
+import { createJsonResponse } from '../apiHelpers'
 
 const userSchema = z.object({
   email: z.string().email(),
@@ -18,15 +19,6 @@ const userSchema = z.object({
     ),
 })
 
-function createErrorResponse(statusCode: number, errorMessage: string) {
-  return new Response(JSON.stringify({ error: errorMessage }), {
-    status: statusCode,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-}
-
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -34,7 +26,10 @@ export async function POST(request: Request) {
     // validate data from the request
     const validationResult = userSchema.safeParse(body)
     if (!validationResult.success) {
-      return createErrorResponse(400, validationResult.error.errors[0].message)
+      return createJsonResponse(
+        { error: validationResult.error.errors[0].message },
+        400,
+      )
     }
 
     const { email, userName, password } = validationResult.data
@@ -47,9 +42,9 @@ export async function POST(request: Request) {
     })
 
     if (emailExists) {
-      return createErrorResponse(
+      return createJsonResponse(
+        { error: 'An account with this email address already exists.' },
         400,
-        'An account with this email address already exists.',
       )
     }
 
@@ -60,7 +55,7 @@ export async function POST(request: Request) {
     })
 
     if (userNameExists) {
-      return createErrorResponse(400, 'Username is already taken.')
+      return createJsonResponse({ error: 'Username is already taken.' }, 400)
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -75,13 +70,8 @@ export async function POST(request: Request) {
 
     const user = { email, userName }
 
-    return new Response(JSON.stringify(user), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return createJsonResponse(user, 200)
   } catch (error) {
-    return createErrorResponse(500, 'An unknown error occurred.')
+    return createJsonResponse({ error: 'An unknown error occurred.' }, 500)
   }
 }

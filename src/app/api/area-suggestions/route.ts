@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { createJsonResponse } from '../apiHelpers'
 
 const autocompleteApiUrl = process.env.AUTOCOMPLETE_API_URL
 
@@ -7,12 +8,7 @@ export async function GET(request: NextRequest) {
   const input = url.searchParams.get('input')
 
   if (!input) {
-    return new Response(JSON.stringify({ error: 'Missing input parameter' }), {
-      status: 400,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return createJsonResponse({ error: 'Missing input parameter' }, 400)
   }
 
   try {
@@ -25,23 +21,13 @@ export async function GET(request: NextRequest) {
 
     const data = await apiResponse.json()
 
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return createJsonResponse(data, 200)
   } catch (error) {
     console.error(error)
 
-    return new Response(
-      JSON.stringify({ error: 'Failed to fetch autocomplete results' }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
+    return createJsonResponse(
+      { error: 'Failed to fetch autocomplete results' },
+      500,
     )
   }
 }
