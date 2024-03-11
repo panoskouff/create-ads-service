@@ -20,7 +20,7 @@ describe('Autocomplete API handler tests', () => {
   })
 
   it('should return the appropriate response if the input parameter is missing', async () => {
-    // Simulate a request without the input parameter
+    // simulate a request without the input parameter
     await autocompleteGET({
       url: 'http://localhost/api/autocomplete',
     } as any)

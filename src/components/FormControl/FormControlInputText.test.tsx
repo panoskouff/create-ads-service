@@ -104,7 +104,7 @@ describe('FormControlInputText', () => {
     // aria-describedby is not shown because our field is not touched yet
     expect(input.getAttribute('aria-describedby')).toBe(null)
 
-    // Since no user interaction has happened, there shouldn't be an error message
+    // since no user interaction has happened, there shouldn't be an error message
     expect(screen.queryByText('[TextError]')).not.toBeInTheDocument()
   })
 
