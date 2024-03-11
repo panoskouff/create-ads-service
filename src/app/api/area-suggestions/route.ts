@@ -16,7 +16,8 @@ export async function GET(request: NextRequest) {
     const apiResponse = await fetch(apiUrl)
 
     if (!apiResponse.ok) {
-      throw new Error(`API responded with status ${apiResponse.status}`)
+      const errorData = await apiResponse.json()
+      return createJsonResponse(errorData, apiResponse.status)
     }
 
     const data = await apiResponse.json()
