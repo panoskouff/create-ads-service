@@ -63,7 +63,7 @@ describe('Autocomplete API handler tests', () => {
     expect(mockCreateResponse).toHaveBeenCalledWith({ error: 'Not found' }, 404)
   })
 
-  it.only('should return the appropriate response if our handler throws', async () => {
+  it('should return the appropriate response if our handler throws', async () => {
     ;(global.fetch as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error('Network error')),
     )
