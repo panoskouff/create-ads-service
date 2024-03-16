@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { AdPropertyForm, AdPropertyFormProps } from './AdPropertyForm'
 import { fireEvent } from '@testing-library/react'
-import { any } from 'zod'
 
 var MockFormProvider: jest.Mock
 jest.mock('react-hook-form', () => {
@@ -90,7 +89,6 @@ describe('AdPropertyForm', () => {
       {
         fieldTitle: expect.any(String),
         name: expect.any(String),
-        rules: expect.any(Object),
       },
       {},
     )
@@ -98,7 +96,6 @@ describe('AdPropertyForm', () => {
       {
         fieldTitle: expect.any(String),
         name: expect.any(String),
-        rules: expect.any(Object),
         options: expect.any(Array),
       },
       {},
@@ -107,7 +104,6 @@ describe('AdPropertyForm', () => {
       {
         fieldTitle: expect.any(String),
         name: expect.any(String),
-        rules: expect.any(Object),
       },
       {},
     )
@@ -115,7 +111,6 @@ describe('AdPropertyForm', () => {
       {
         fieldTitle: expect.any(String),
         name: expect.any(String),
-        rules: expect.any(Object),
       },
       {},
     )

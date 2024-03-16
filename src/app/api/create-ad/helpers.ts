@@ -7,8 +7,8 @@ export function sanitizePropertyAdData(ad: PropertyAd): PropertyAd {
     propertyPrice: escape(ad.propertyPrice),
     propertyAdType: escape(ad.propertyAdType),
     propertyAreas: ad.propertyAreas.map((area) => ({
-      placeId: escape(area.placeId), // our id shouldn't contain illegal characters so its safe to do this
-      name: escape(area.name),
+      value: escape(area.value), // our id shouldn't contain illegal characters so its safe to do this
+      label: escape(area.label),
     })),
     propertyDescription: ad.propertyDescription
       ? escape(ad.propertyDescription)

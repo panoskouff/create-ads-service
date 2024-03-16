@@ -1,11 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { PropertyAdFormInputs } from '#/types'
 import { AdPropertyForm } from './AdPropertyForm'
 import { createAdMutation } from '#/network/mutations'
-import { adaptInputDataForRequest } from './helpers'
+import { PropertyAdSchema } from '#/schemas/PropertyAdSchema'
 
 export const AdPropertyFormContainer = () => {
   const [errorMessage, setErrorMessage] = useState<string>('')
@@ -18,6 +19,7 @@ export const AdPropertyFormContainer = () => {
       propertyDescription: '',
     },
     mode: 'all',
+    resolver: zodResolver(PropertyAdSchema),
   })
 
   const router = useRouter()
@@ -25,10 +27,8 @@ export const AdPropertyFormContainer = () => {
   const onSubmit: SubmitHandler<PropertyAdFormInputs> = async (formData) => {
     setErrorMessage('')
 
-    const dataToBeSubmitted = adaptInputDataForRequest(formData)
-
     try {
-      const response = await createAdMutation(dataToBeSubmitted)
+      const response = await createAdMutation(formData)
 
       if (response.ok) {
         const message = `Ad for "${formData.propertyTitle}" submitted successfully!`

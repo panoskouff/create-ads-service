@@ -25,16 +25,7 @@ export const AdPropertyForm: React.FC<AdPropertyFormProps> = ({
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} data-testid='ad-property-form'>
         <FormFieldSet title='Property details'>
-          <FormControlInputText
-            fieldTitle='Title'
-            name='propertyTitle'
-            rules={{
-              required: {
-                value: true,
-                message: 'Please add a title for your property',
-              },
-            }}
-          />
+          <FormControlInputText fieldTitle='Title' name='propertyTitle' />
           <FormControlSelect
             fieldTitle='Type'
             name='propertyAdType'
@@ -45,41 +36,16 @@ export const AdPropertyForm: React.FC<AdPropertyFormProps> = ({
               { label: 'Exchange', value: 'exchange' },
               { label: 'Donation', value: 'donation' },
             ]}
-            rules={{
-              required: {
-                value: true,
-                message: 'Please select an ad type for your property',
-              },
-            }}
           />
-          <FormControlAreaAutocomplete
-            fieldTitle='Area'
-            name='propertyAreas'
-            rules={{
-              required: {
-                value: true,
-                message:
-                  'Please select the matching area or areas of your property',
-              },
-            }}
-          />
+          <FormControlAreaAutocomplete fieldTitle='Area' name='propertyAreas' />
           <FormControlInputText
             type='number'
             fieldTitle='Price in Euros'
             name='propertyPrice'
-            rules={{
-              required: {
-                value: true,
-                message: 'Please add a price for your property ad',
-              },
-            }}
           />
           <FormControlTextArea
             fieldTitle='Extra description'
             name='propertyDescription'
-            rules={{
-              required: false,
-            }}
           />
         </FormFieldSet>
         <Space h={20} />

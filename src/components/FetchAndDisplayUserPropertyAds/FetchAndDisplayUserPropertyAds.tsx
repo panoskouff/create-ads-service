@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 import prisma from '#/libs/prismadb'
-import { PropertyAd as PropertyAdCardProps } from '#/types'
+import { PropertyAdCardProps } from '#/components/PropertyAdCard'
 import { authOptions } from '#/app/api/auth/[...nextauth]/authOptions'
 import { Space, Text } from '#/atoms'
 import { PropertyAdCards } from './PropertyAdCards'

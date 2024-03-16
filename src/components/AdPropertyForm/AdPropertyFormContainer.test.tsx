@@ -37,14 +37,6 @@ jest.mock('./AdPropertyForm', () => {
   }
 })
 
-var mockAdaptInputDataForRequest: jest.Mock
-jest.mock('./helpers', () => {
-  mockAdaptInputDataForRequest = jest.fn(() => 'mock-adapted-data')
-  return {
-    adaptInputDataForRequest: mockAdaptInputDataForRequest,
-  }
-})
-
 var mockCreateAdMutation: jest.Mock
 jest.mock('#/network/mutations', () => {
   mockCreateAdMutation = jest.fn(() => ({
@@ -70,6 +62,7 @@ describe('AdPropertyFormContainer', () => {
         propertyDescription: '',
       },
       mode: 'all',
+      resolver: expect.any(Function),
     })
 
     // should call trigger to validate all fields onMount
@@ -97,10 +90,6 @@ describe('AdPropertyFormContainer', () => {
 
     onSubmit(mockFormData)
 
-    // should adapt the formData before submitting them
-    expect(mockAdaptInputDataForRequest).toHaveBeenCalledWith(mockFormData)
-
-    // should call createAdMutation with the adapted data for the request
-    expect(mockCreateAdMutation).toHaveBeenCalledWith('mock-adapted-data')
+    expect(mockCreateAdMutation).toHaveBeenCalledWith(mockFormData)
   })
 })

@@ -5,7 +5,7 @@ const validAd: PropertyAd = {
   propertyTitle: 'A beautiful house',
   propertyPrice: '300000',
   propertyAdType: 'buy',
-  propertyAreas: [{ placeId: '1', name: 'Downtown' }],
+  propertyAreas: [{ value: '1', label: 'Downtown' }],
 }
 
 describe('PropertyAdSchema', () => {
@@ -37,7 +37,7 @@ describe('PropertyAdSchema', () => {
 
     const adWithInvalidArea = {
       ...validAd,
-      propertyAreas: [{ placeId: '', name: '' }],
+      propertyAreas: [{ value: '', label: '' }],
     }
 
     expect(PropertyAdSchema.safeParse(adWithInvalidArea).success).toBe(false)

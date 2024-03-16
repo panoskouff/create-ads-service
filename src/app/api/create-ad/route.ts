@@ -32,8 +32,8 @@ export async function POST(request: NextRequest) {
         propertyAdType: sanitizedData.propertyAdType,
         propertyAreas: {
           connectOrCreate: sanitizedData.propertyAreas.map((area) => ({
-            where: { placeId: area.placeId },
-            create: { name: area.name, placeId: area.placeId },
+            where: { placeId: area.value },
+            create: { name: area.label, placeId: area.value },
           })),
         },
         propertyDescription: sanitizedData.propertyDescription,

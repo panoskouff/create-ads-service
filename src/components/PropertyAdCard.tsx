@@ -2,7 +2,11 @@ import { PropertyAd } from '#/types'
 import { Column, Padding, Row, Space, Text } from '#/atoms'
 import { Container } from '#/styled-system/jsx'
 
-export const PropertyAdCard: React.FC<PropertyAd> = ({
+export type PropertyAdCardProps = Omit<PropertyAd, 'propertyAreas'> & {
+  propertyAreas: { placeId: string; name: string }[]
+}
+
+export const PropertyAdCard: React.FC<PropertyAdCardProps> = ({
   propertyTitle,
   propertyPrice,
   propertyAdType,

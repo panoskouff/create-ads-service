@@ -8,7 +8,7 @@ describe('sanitizePropertyAdData', () => {
       propertyPrice: '100<script>',
       propertyAdType: '<img src=x onerror=alert("type")>',
       propertyAreas: [
-        { placeId: '<img>', name: '<script>alert("area")</script>' },
+        { value: '<img>', label: '<script>alert("area")</script>' },
       ],
       propertyDescription: 'A <b>great</b> place to live!',
     }
@@ -18,8 +18,8 @@ describe('sanitizePropertyAdData', () => {
     expect(sanitizedAd.propertyTitle).not.toContain('<script>')
     expect(sanitizedAd.propertyPrice).not.toContain('<script>')
     expect(sanitizedAd.propertyAdType).not.toContain('<img src=x')
-    expect(sanitizedAd.propertyAreas[0].placeId).not.toContain('<img>')
-    expect(sanitizedAd.propertyAreas[0].name).not.toContain('<script>')
+    expect(sanitizedAd.propertyAreas[0].value).not.toContain('<img>')
+    expect(sanitizedAd.propertyAreas[0].label).not.toContain('<script>')
     expect(sanitizedAd.propertyDescription).not.toContain('<b>')
   })
 })
