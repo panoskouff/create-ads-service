@@ -1,6 +1,7 @@
 import { getToken } from 'next-auth/jwt'
 import { NextRequest } from 'next/server'
-import { PropertyAdSchema, sanitizePropertyAdData } from './helpers'
+import { sanitizePropertyAdData } from './helpers'
+import { PropertyAdSchema } from '#/schemas/PropertyAdSchema'
 import { z } from 'zod'
 import { createJsonResponse } from '../apiHelpers'
 import prisma from '#/libs/prismadb'

@@ -10,11 +10,17 @@ jest.mock('next-auth/jwt', () => {
   }
 })
 
-var mockPropertyAdSchema: { parse: jest.Mock }
 var mockSanitizePropertyAdData: jest.Mock
 jest.mock('#/app/api/create-ad/helpers', () => {
-  mockPropertyAdSchema = { parse: jest.fn() }
   mockSanitizePropertyAdData = jest.fn()
+  return {
+    sanitizePropertyAdData: mockSanitizePropertyAdData,
+  }
+})
+
+var mockPropertyAdSchema: { parse: jest.Mock }
+jest.mock('#/schemas/PropertyAdSchema', () => {
+  mockPropertyAdSchema = { parse: jest.fn() }
   return {
     PropertyAdSchema: mockPropertyAdSchema,
     sanitizePropertyAdData: mockSanitizePropertyAdData,
